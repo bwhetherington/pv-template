@@ -7,5 +7,4 @@
 * Navigate to http://localhost:8080 in your browser
 
 # TODO
-* Create a server using Express and react-router
 * Figure out how to use CSS modules...

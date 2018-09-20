@@ -1,0 +1,27 @@
+@import "colors.scss";
+
+.navbar {
+    // background: $primary-accent;
+    border-bottom: 1px solid lightgrey;
+    padding: 10px;
+}
+
+.left {
+    // float: left;
+}
+
+.right {
+    float: right;
+}
+
+.link {
+    // margin: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: grey;
+    text-decoration: none;
+}
+
+.link:hover {
+    color: black;
+}

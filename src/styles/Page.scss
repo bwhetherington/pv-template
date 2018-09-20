@@ -1,9 +1,17 @@
 @import "colors.scss";
 
 .page {
-    padding: 10px;
-    background: $primary-accent;
+    // padding: 10px;
+    // background: $primary-accent;
     font-family: "arial";
-    text-align: center;
-    color: $secondary-accent;
+    margin: 0;
+    padding: 0;
+    // text-align: center;
+    // color: $secondary-accent;
+}
+
+.content {
+    max-width: 1000px;
+    margin: auto;
+    padding: 10px;
 }

@@ -6,4 +6,5 @@
 `npm start`
 
 # TODO
-Figure out how to use CSS modules...
+* Create a server using Express and react-router
+* Figure out how to use CSS modules...

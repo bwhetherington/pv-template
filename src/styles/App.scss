@@ -1,0 +1,9 @@
+@import "colors.scss";
+
+.app {
+    padding: 10px;
+    background: $primary-accent;
+    font-family: "arial";
+    text-align: center;
+    color: $secondary-accent;
+}

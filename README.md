@@ -3,7 +3,8 @@
 2. `npm install`
 
 # Running in dev mode
-`npm start`
+* Run the dev server with the following command: `npm start`
+* Navigate to http://localhost:8080 in your browser
 
 # TODO
 * Create a server using Express and react-router

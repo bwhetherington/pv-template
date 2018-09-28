@@ -5,9 +5,16 @@ import App from "./components/App";
 
 import "./styles/index.scss";
 
+import { theme } from "./theme";
+import { MuiThemeProvider } from "@material-ui/core/styles";
+import CssBaseline from "@material-ui/core/CssBaseline";
+
 ReactDOM.render(
-    <BrowserRouter>
-        <App />
-    </BrowserRouter>,
+    <MuiThemeProvider theme={theme}>
+        <CssBaseline />
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
+    </MuiThemeProvider>,
     document.getElementById("app")
 );

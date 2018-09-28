@@ -3,10 +3,10 @@ import Page from "./Page";
 
 /**
  * A dummy about page.
- * @param {*} props 
+ * @param props 
  */
 const About = (props) => (
-    <Page>
+    <Page selected="about">
         About us
     </Page>
 );

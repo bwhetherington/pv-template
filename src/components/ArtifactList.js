@@ -6,7 +6,7 @@ import Page from "./Page";
  * @param props 
  */
 const ArtifactList = (props) => (
-    <Page>
+    <Page selected="artifacts">
         Artifact listings
     </Page>
 );

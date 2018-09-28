@@ -6,7 +6,7 @@ import Page from "./Page";
  * @param props 
  */
 const Contact = (props) => (
-    <Page>
+    <Page selected="contact">
         Contact us
     </Page>
 );

@@ -1,9 +1,20 @@
 @import "colors.scss";
 
 .navbar {
-    // background: $primary-accent;
+    background: white;
     border-bottom: 1px solid lightgrey;
     padding: 10px;
+    position: sticky;
+    top: 0;
+}
+
+.navbarAlt {
+    background: $primary-accent;
+    // box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5);
+    // border-bottom: 1px solid lightgrey;
+    padding: 10px;
+    position: sticky;
+    top: 0;
 }
 
 .left {
@@ -18,8 +29,12 @@
     // margin: 5px;
     padding-left: 10px;
     padding-right: 10px;
-    color: grey;
     text-decoration: none;
+    color: grey;
+}
+
+.selected {
+    color: black;
 }
 
 .link:hover {

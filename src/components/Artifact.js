@@ -8,7 +8,7 @@ import Page from "./Page";
 const Artifact = (props) => {
     let artifactId = props.match.params.artifactId;
     return (
-        <Page>
+        <Page selected="artifacts">
             Artifact page for {artifactId}
         </Page>
     )

@@ -1,17 +1,9 @@
-@import "colors.scss";
-
 .page {
-    // padding: 10px;
-    // background: $primary-accent;
-    font-family: "arial";
-    margin: 0;
-    padding: 0;
-    // text-align: center;
-    // color: $secondary-accent;
+    font-family: arial;
 }
 
 .content {
     max-width: 1000px;
     margin: auto;
-    padding: 10px;
+    margin-top: 20px;
 }

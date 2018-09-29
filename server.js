@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 
 // Allow access to build directory
-app.use(express.static("build"));
+app.use(express.static("public"));
 
 // Redirect all routes to dist/index.html and then allow react-router to handle it
 app.get("/*", (req, res) => {

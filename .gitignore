@@ -1,8 +1,8 @@
 # VS Code
 .vscode/
 
-# Built files
-build/
+# bundle.js
+public/bundle.js
 
 # Logs
 logs

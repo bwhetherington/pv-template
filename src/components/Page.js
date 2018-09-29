@@ -1,7 +1,5 @@
 import React from "react";
 import Navbar from "./Navbar";
-import '../styles/Page.scss';
-import NavButton from "./NavButton";
 
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";

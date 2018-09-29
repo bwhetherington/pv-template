@@ -6,5 +6,9 @@
 * Run the dev server with the following command: `npm start`
 * Navigate to http://localhost:8080 in your browser
 
+# Production
+* Build the website with `npm run build`
+* Serve with `npm run serve`
+
 # TODO
-* Figure out how to use CSS modules...
+* Figure out why Webpack is building an unneeded build.index.html

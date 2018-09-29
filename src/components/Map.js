@@ -1,5 +1,4 @@
 import React from "react";
-import "../styles/Map.scss";
 
 /**
  * A dummy map component.

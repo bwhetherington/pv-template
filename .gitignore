@@ -1,6 +1,9 @@
 # VS Code
 .vscode/
 
+# Built files
+build/
+
 # Logs
 logs
 *.log

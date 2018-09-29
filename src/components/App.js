@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import About from "./About";
 import Artifact from "./Artifact";
 import ArtifactList from "./ArtifactList";
@@ -19,13 +19,15 @@ const Artifacts = (props) => (
 );
 
 const App = (props) => (
-    <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/about" component={About} />
-        <Route exact path="/contact" component={Contact} />
-        <Route path="/artifacts" component={Artifacts} />
-        <Route path="*" component={NotFound} />
-    </Switch>
+    <BrowserRouter>
+        <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/about" component={About} />
+            <Route exact path="/contact" component={Contact} />
+            <Route path="/artifacts" component={Artifacts} />
+            <Route path="*" component={NotFound} />
+        </Switch>
+    </BrowserRouter>
 );
 
 export default App;

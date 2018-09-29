@@ -5,7 +5,12 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --config ./webpack.config.js --mode development",
+    "build": "webpack -p --progress --mode production --config webpack.config.js",
+    "serve": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "config": {
+    "myPort": "8080"
   },
   "repository": {
     "type": "git",
@@ -39,7 +44,7 @@
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.0",
     "webpack": "^4.19.1",
-    "webpack-cli": "^3.1.0",
+    "webpack-cli": "^3.1.1",
     "webpack-dev-server": "^3.1.8"
   },
   "dependencies": {

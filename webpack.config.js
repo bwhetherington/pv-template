@@ -9,10 +9,6 @@ module.exports = {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: ["babel-loader"]
-            },
-            {
-                test: /\.(s*)css$/,
-                use: ["style-loader", "css-loader", "sass-loader"]
             }
         ]
     },
@@ -20,18 +16,17 @@ module.exports = {
         extensions: ["*", ".js", ".jsx"]
     },
     output: {
-        path: __dirname + "/dist",
+        path: __dirname + "/build",
         publicPath: "/",
         filename: "bundle.js"
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
-            template: 'dist/index.html'
+            template: 'public/index.html'
         })
     ],
     devServer: {
-        // contentBase: "./dist",
         historyApiFallback: true,
         hot: true
     }

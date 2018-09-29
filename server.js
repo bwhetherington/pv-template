@@ -2,12 +2,14 @@ const path = require("path");
 const express = require("express");
 const app = express();
 
+const DIR = "dist";
+
 // Allow access to build directory
-app.use(express.static("public"));
+app.use(express.static(DIR));
 
 // Redirect all routes to dist/index.html and then allow react-router to handle it
 app.get("/*", (req, res) => {
-    const index = path.resolve(__dirname, "public", "index.html");
+    const index = path.resolve(__dirname, DIR, "index.html");
     res.sendFile(index);
 });
 

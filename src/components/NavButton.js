@@ -4,7 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 import ButtonBase from "@material-ui/core/ButtonBase";
 import Typography from "@material-ui/core/Typography";
 
-const buttonStyles = (theme) => ({
+const buttonStyles = theme => ({
     button: {
         height: "100%",
         padding: theme.spacing.unit * 2,
@@ -16,7 +16,7 @@ const buttonStyles = (theme) => ({
         height: "100%",
         padding: theme.spacing.unit * 2,
         backgroundColor: theme.palette.primary.dark,
-        boxShadow: `inset 0px -5px 0px 0px ${theme.palette.primary.light}`
+        boxShadow: `inset 0px -3px 0px 0px white`
     }
 });
 

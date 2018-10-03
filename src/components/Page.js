@@ -4,7 +4,7 @@ import Navbar from "./Navbar";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 
-const styles = (theme) => ({
+const styles = theme => ({
     content: {
         width: "auto",
         marginLeft: theme.spacing.unit * 3,
@@ -34,14 +34,4 @@ Page.propTypes = {
     classes: PropTypes.object.isRequired
 };
 
-const App = (props) => (
-    <div className="page">
-        <Navbar selected={props.selected} />
-        <div className="content">
-            {props.children}
-        </div>
-    </div>
-);
-
-// export default App;
 export default withStyles(styles)(Page);

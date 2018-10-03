@@ -7,7 +7,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 
-const styles = (theme) => ({
+const styles = theme => ({
     appBar: {
         position: "relative"
     },
@@ -23,7 +23,7 @@ const links = {
     contact: "Contact"
 };
 
-const onClick = (href) => () => {
+const onClick = href => () => {
     location.href = href;
 };
 

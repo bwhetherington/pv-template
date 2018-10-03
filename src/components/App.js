@@ -11,14 +11,14 @@ import NotFound from "./NotFound";
  * A dummy artifacts router.
  * @param {*} props 
  */
-const Artifacts = (props) => (
+const Artifacts = _ => (
     <Switch>
         <Route exact path="/artifacts" component={ArtifactList} />
         <Route path="/artifacts/:artifactId" component={Artifact} />
     </Switch>
 );
 
-const App = (props) => (
+const App = _ => (
     <BrowserRouter>
         <Switch>
             <Route exact path="/" component={Home} />

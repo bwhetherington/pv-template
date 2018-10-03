@@ -19,7 +19,7 @@ const styles = (theme) => ({
 
 });
 
-const Home = (props) => (
+const Home = props => (
     <Page selected="">
         <Typography variant="display3" align="center">
             PreserVenice

@@ -1,23 +1,23 @@
-import React from "react";
-import Navbar from "./Navbar";
+import React from 'react';
+import Navbar from './Navbar';
 
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
   content: {
-    width: "auto",
+    width: 'auto',
     marginLeft: theme.spacing.unit * 3,
     marginRight: theme.spacing.unit * 3,
-    fontFamily: "Roboto",
+    fontFamily: 'Roboto',
     paddingTop: theme.spacing.unit * 2,
     paddingBottom: theme.spacing.unit * 2
   },
   appBar: {
-    position: "relative"
+    position: 'relative'
   },
   toolbarTitle: {
-    flex: "1"
+    flex: '1'
   }
 });
 

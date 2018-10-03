@@ -1,11 +1,11 @@
-import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-import About from "./About";
-import Artifact from "./Artifact";
-import ArtifactList from "./ArtifactList";
-import Contact from "./Contact";
-import Home from "./Home";
-import NotFound from "./NotFound";
+import React from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import About from './About';
+import Artifact from './Artifact';
+import ArtifactList from './ArtifactList';
+import Contact from './Contact';
+import Home from './Home';
+import NotFound from './NotFound';
 
 /**
  * A dummy artifacts router.

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 /**
  * A dummy map component.

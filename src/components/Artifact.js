@@ -1,5 +1,5 @@
-import React from "react";
-import Page from "./Page";
+import React from 'react';
+import Page from './Page';
 
 /**
  * A dummy artifact page.

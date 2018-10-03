@@ -1,26 +1,26 @@
-import React from "react";
-import NavButton from "./NavButton";
+import React from 'react';
+import NavButton from './NavButton';
 
-import { withStyles } from "@material-ui/core/styles";
-import PropTypes from "prop-types";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
+import { withStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
   appBar: {
-    position: "relative"
+    position: 'relative'
   },
   toolbarTitle: {
-    flex: "1"
+    flex: '1'
   }
 });
 
 const links = {
-  "": "Home",
-  artifacts: "Artifacts",
-  about: "About",
-  contact: "Contact"
+  '': 'Home',
+  artifacts: 'Artifacts',
+  about: 'About',
+  contact: 'Contact'
 };
 
 const onClick = href => () => {
@@ -47,12 +47,7 @@ const renderLinks = (selected, links) =>
 const Navbar = ({ classes, selected }) => (
   <AppBar position="static" className={classes.appBar}>
     <Toolbar variant="dense">
-      <Typography
-        variant="title"
-        color="inherit"
-        noWrap
-        className={classes.toolbarTitle}
-      >
+      <Typography variant="title" color="inherit" noWrap className={classes.toolbarTitle}>
         PreserVenice
       </Typography>
       {renderLinks(selected, links)}

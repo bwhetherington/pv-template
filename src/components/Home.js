@@ -1,9 +1,9 @@
-import React from "react";
-import Page from "./Page";
+import React from 'react';
+import Page from './Page';
 
-import { withStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import Divider from "@material-ui/core/Divider";
+import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
 
 /**
  * A dummy home page.

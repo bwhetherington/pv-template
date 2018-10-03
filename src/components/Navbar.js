@@ -2,7 +2,7 @@ import React from 'react';
 import NavButton from './NavButton';
 
 import { withStyles } from '@material-ui/core/styles';
-import { object, array } from 'prop-types';
+import { object, string } from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -27,6 +27,11 @@ const onClick = href => () => {
   location.href = href;
 };
 
+/**
+ * Renders the links specified in the links object as `NavButton`s.
+ * @param {string} selected The currently selected page
+ * @param {object} links An object mapping urls to page names
+ */
 const renderLinks = (selected, links) =>
   Object.keys(links).map(key => (
     <NavButton key={key} selected={key === selected} onClick={onClick('/' + key)}>
@@ -47,7 +52,7 @@ const Navbar = ({ classes, selected }) => (
 
 Navbar.propTypes = {
   classes: object.isRequired,
-  selected: array
+  selected: string
 };
 
 export default withStyles(styles)(Navbar);

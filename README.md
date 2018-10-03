@@ -12,3 +12,6 @@
 
 # TODO
 * Figure out why Webpack is building an unneeded build.index.html
+
+# Getting started in VS Code
+For the best development experience in VS code, please download the ESLint and Prettier plugins.

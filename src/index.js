@@ -7,9 +7,9 @@ import { MuiThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
 ReactDOM.render(
-    <MuiThemeProvider theme={theme}>
-        <CssBaseline />
-        <App />
-    </MuiThemeProvider>,
-    document.getElementById("app")
+  <MuiThemeProvider theme={theme}>
+    <CssBaseline />
+    <App />
+  </MuiThemeProvider>,
+  document.getElementById("app")
 );

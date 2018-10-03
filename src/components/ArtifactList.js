@@ -3,12 +3,10 @@ import Page from "./Page";
 
 /**
  * A dummy artifact listing page.
- * @param props 
+ * @param props
  */
 const ArtifactList = props => (
-    <Page selected="artifacts">
-        Artifact listings
-    </Page>
+  <Page selected="artifacts">Artifact listings</Page>
 );
 
 export default ArtifactList;

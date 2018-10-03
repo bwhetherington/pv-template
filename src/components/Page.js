@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from './Navbar';
 
-import PropTypes from 'prop-types';
+import { object, string } from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
@@ -29,7 +29,8 @@ const Page = ({ classes, children, selected }) => (
 );
 
 Page.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: object.isRequired,
+  selected: string
 };
 
 export default withStyles(styles)(Page);

@@ -8,16 +8,25 @@ import Home from './Home';
 import NotFound from './NotFound';
 
 /**
+ * This component wraps an Artifact component, extracting the artifact ID from the routing 
+ * information provided.
+ * @param {object} props 
+ */
+const ArtifactWrapper = props => <Artifact artifactId={props.match.params.artifactId} />;
+
+/**
  * A dummy artifacts router.
- * @param {*} props
  */
 const Artifacts = _ => (
   <Switch>
     <Route exact path="/artifacts" component={ArtifactList} />
-    <Route path="/artifacts/:artifactId" component={Artifact} />
+    <Route path="/artifacts/:artifactId" component={ArtifactWrapper} />
   </Switch>
 );
 
+/**
+ * This component handles routing to specific pages.
+ */
 const App = _ => (
   <BrowserRouter>
     <Switch>

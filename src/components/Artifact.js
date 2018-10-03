@@ -1,13 +1,21 @@
 import React from 'react';
 import Page from './Page';
 
+import { withStyles } from '@material-ui/core/styles';
+import { object, string } from 'proptypes';
+
+
+const styles = _ => {};
+
 /**
- * A dummy artifact page.
- * @param props
+ * This component renders a page for the artifact with the specified artifact ID. 
+ * @param {object} props
  */
-const Artifact = props => {
-  let artifactId = props.match.params.artifactId;
-  return <Page selected="artifacts">Artifact page for {artifactId}</Page>;
+const Artifact = ({ artifactId }) => <Page selected="artifacts">Artifact page for {artifactId}</Page>;
+
+Artifact.propTypes = {
+  classes: object.isRequired,
+  artifactId: string.isRequired
 };
 
-export default Artifact;
+export default withStyles(styles)(Artifact);

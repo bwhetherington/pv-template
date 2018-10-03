@@ -2,9 +2,8 @@ import React from 'react';
 import Page from './Page';
 
 /**
- * A dummy about page.
- * @param props
+ * This component renders the PreserVenice website's contact page.
  */
-const Contact = props => <Page selected="contact">Contact us</Page>;
+const Contact = _ => <Page selected="contact">Contact us</Page>;
 
 export default Contact;

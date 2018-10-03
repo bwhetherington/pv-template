@@ -1,9 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { object, bool } from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Typography from '@material-ui/core/Typography';
 
+/**
+ * 
+ * @param {object} theme 
+ */
 const buttonStyles = theme => ({
   button: {
     height: '100%',
@@ -20,6 +24,10 @@ const buttonStyles = theme => ({
   }
 });
 
+/**
+ * Creates a NavButton
+ * @param {object} props 
+ */
 const NavButton = ({ classes, children, selected, ...props }) => (
   <ButtonBase className={selected ? classes.buttonSelected : classes.button} {...props}>
     <Typography color="inherit" variant="button">
@@ -29,7 +37,8 @@ const NavButton = ({ classes, children, selected, ...props }) => (
 );
 
 NavButton.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: object.isRequired,
+  selected: bool
 };
 
 export default withStyles(buttonStyles)(NavButton);

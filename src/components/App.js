@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import About from './About';
 import Artifact from './Artifact';
 import ArtifactList from './ArtifactList';
@@ -8,9 +8,9 @@ import Home from './Home';
 import NotFound from './NotFound';
 
 /**
- * This component wraps an Artifact component, extracting the artifact ID from the routing 
+ * This component wraps an Artifact component, extracting the artifact ID from the routing
  * information provided.
- * @param {object} props 
+ * @param {object} props
  */
 const ArtifactWrapper = props => <Artifact artifactId={props.match.params.artifactId} />;
 
@@ -28,7 +28,7 @@ const Artifacts = _ => (
  * This component handles routing to specific pages.
  */
 const App = _ => (
-  <BrowserRouter>
+  <Router>
     <Switch>
       <Route exact path="/" component={Home} />
       <Route exact path="/about" component={About} />
@@ -36,7 +36,7 @@ const App = _ => (
       <Route path="/artifacts" component={Artifacts} />
       <Route path="*" component={NotFound} />
     </Switch>
-  </BrowserRouter>
+  </Router>
 );
 
 export default App;

@@ -3,9 +3,7 @@ import NavButton from './NavButton';
 
 import { withStyles } from '@material-ui/core/styles';
 import { object, string } from 'prop-types';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
+import { AppBar, Toolbar, Typography } from '@material-ui/core';
 
 const styles = theme => ({
   appBar: {
@@ -16,15 +14,31 @@ const styles = theme => ({
   }
 });
 
-const links = {
-  '': 'Home',
-  artifacts: 'Artifacts',
-  about: 'About',
-  contact: 'Contact'
-};
-
+/**
+ * Creates a click handler that navigates to the specified URL.
+ * @param {string} href The specified URL
+ */
 const onClick = href => () => {
   location.href = href;
+};
+
+const links = {
+  '': {
+    name: 'Home',
+    handler: onClick('/')
+  },
+  artifacts: {
+    name: 'Artifacts',
+    handler: onClick('/artifacts')
+  },
+  about: {
+    name: 'About',
+    handler: onClick('/about')
+  },
+  contact: {
+    name: 'Contact',
+    handler: onClick('/contact')
+  }
 };
 
 /**
@@ -34,8 +48,8 @@ const onClick = href => () => {
  */
 const renderLinks = (selected, links) =>
   Object.keys(links).map(key => (
-    <NavButton key={key} selected={key === selected} onClick={onClick('/' + key)}>
-      {links[key]}
+    <NavButton key={key} selected={key === selected} onClick={links[key].handler}>
+      {links[key].name}
     </NavButton>
   ));
 

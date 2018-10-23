@@ -1,12 +1,11 @@
 import React from 'react';
 import { object, bool } from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import ButtonBase from '@material-ui/core/ButtonBase';
-import Typography from '@material-ui/core/Typography';
+import { ButtonBase, Typography } from '@material-ui/core';
 
 /**
- * 
- * @param {object} theme 
+ *
+ * @param {object} theme
  */
 const buttonStyles = theme => ({
   button: {
@@ -26,7 +25,7 @@ const buttonStyles = theme => ({
 
 /**
  * Creates a NavButton
- * @param {object} props 
+ * @param {object} props
  */
 const NavButton = ({ classes, children, selected, ...props }) => (
   <ButtonBase className={selected ? classes.buttonSelected : classes.button} {...props}>

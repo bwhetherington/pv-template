@@ -2,9 +2,8 @@ import React from 'react';
 import Page from './Page';
 
 import { withStyles } from '@material-ui/core/styles';
-import { object, string } from 'proptypes';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
+import { object, string } from 'prop-types';
+import { Divider, Typography } from '@material-ui/core';
 
 const styles = _ => ({});
 
@@ -13,11 +12,14 @@ const styles = _ => ({});
  */
 const Home = _ => (
   <Page selected="">
-    <Typography variant="display3" align="center">
+    <Typography variant="title" align="center">
       PreserVenice
     </Typography>
+    <Typography variant="subheading" align="center">
+      Subtitle
+    </Typography>
     <Divider />
-    Home page!
+    <Typography>Home page!</Typography>
   </Page>
 );
 

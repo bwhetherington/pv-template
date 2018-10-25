@@ -16,7 +16,7 @@ const Home = _ => (
       PreserVenice
     </Typography>
     <Typography variant="subheading" align="center">
-      Subtitle
+      A Crowdfunding Solution to Preserving Venetian Heritage
     </Typography>
     <Divider />
     <Typography>Home page!</Typography>

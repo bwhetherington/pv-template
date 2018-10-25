@@ -1,5 +1,9 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 
+/**
+ * PRIMARY is Venetian red
+ * SECONDARY is Venetian Gold
+ */
 const PRIMARY = '#b60b01';
 const SECONDARY = '#ffaf15';
 
@@ -9,6 +13,9 @@ export const theme = createMuiTheme({
   },
   typography: {
     title: {
+      fontFamily: '"Roboto Slab", serif'
+    },
+    headline: {
       fontFamily: '"Roboto Slab", serif'
     }
   }

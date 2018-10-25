@@ -3,8 +3,12 @@ import Navbar from './Navbar';
 
 import { object, string } from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import { Typography } from '@material-ui/core';
 
 const styles = theme => ({
+  root: {
+    minHeight: "100%"
+  },
   content: {
     width: 'auto',
     marginLeft: theme.spacing.unit * 3,
@@ -18,14 +22,25 @@ const styles = theme => ({
   },
   toolbarTitle: {
     flex: '1'
+  },
+  footer: {
+    backgroundColor: theme.palette.background.paper,
+    height: "100%",
+    marginTop: theme.spacing.unit * 8,
+    padding: theme.spacing.unit * 6
   }
 });
 
 const Page = ({ classes, children, selected }) => (
-  <React.Fragment>
+  <div className={classes.root}>
     <Navbar selected={selected} />
     <div className={classes.content}>{children}</div>
-  </React.Fragment>
+    <footer className={classes.footer}>
+      <Typography align="right">
+        Copyright © 2018 · PreserVenice · All Rights Reserved
+      </Typography>
+    </footer>
+  </div>
 );
 
 Page.propTypes = {

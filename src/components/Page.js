@@ -7,7 +7,7 @@ import { Typography } from '@material-ui/core';
 
 const styles = theme => ({
   root: {
-    minHeight: "100%"
+    minHeight: '100%'
   },
   content: {
     width: 'auto',
@@ -25,7 +25,7 @@ const styles = theme => ({
   },
   footer: {
     backgroundColor: theme.palette.background.paper,
-    height: "100%",
+    height: '100%',
     marginTop: theme.spacing.unit * 8,
     padding: theme.spacing.unit * 6
   }
@@ -36,7 +36,7 @@ const Page = ({ classes, children, selected }) => (
     <Navbar selected={selected} />
     <div className={classes.content}>{children}</div>
     <footer className={classes.footer}>
-      <Typography align="right">
+      <Typography variant="caption" align="right">
         Copyright © 2018 · PreserVenice · All Rights Reserved
       </Typography>
     </footer>

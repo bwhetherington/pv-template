@@ -1,9 +1,10 @@
 import React from 'react';
 import Page from './Page';
+import Separator from './Separator';
 
 import { withStyles } from '@material-ui/core/styles';
 import { object, string } from 'prop-types';
-import { Divider, Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 
 const styles = _ => ({});
 
@@ -12,13 +13,13 @@ const styles = _ => ({});
  */
 const Home = _ => (
   <Page selected="">
-    <Typography variant="title" align="center">
+    <Typography paragraph variant="title" align="center">
       PreserVenice
     </Typography>
     <Typography variant="subheading" align="center">
       A Crowdfunding Solution to Preserving Venetian Heritage
     </Typography>
-    <Divider />
+    <Separator />
     <Typography>Home page!</Typography>
   </Page>
 );

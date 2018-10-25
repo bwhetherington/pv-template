@@ -1,5 +1,6 @@
 import React from 'react';
 import Page from './Page';
+import Separator from './Separator';
 
 import { withStyles } from '@material-ui/core/styles';
 import { Paper, Typography } from '@material-ui/core';
@@ -17,9 +18,10 @@ const styles = theme => ({
 const About = ({ classes }) => (
   <Page selected="about">
     <Paper className={classes.root}>
-      <Typography paragraph variant="headline" align="center">
+      <Typography variant="headline" align="center">
         About PreserVenice
       </Typography>
+      <Separator />
       <Typography paragraph>
         PreserVenice is a non-profit organization devoted to the preservation and restoration of
         public art in Venice, Italy. Please help us preserve this inestimable collection by using
@@ -102,29 +104,24 @@ const About = ({ classes }) => (
           <li>Treasures Underfoot: Preserving Venice's Church Floor Artifacts (2012)</li>
         </ul>
       </Typography>
-      <Typography variant="title" align="left">
+      <Typography variant="title" align="center">
         Acknowledgements
       </Typography>
+      <Separator />
       <Typography paragraph>
         PreserVenice acknowledges the support of the following organizations.
         <ul>
           {/**TODO add hyperlinks */}
           <li>
-            <strong>
-              <a href="http://www.unesco.org/new/en/venice/home/">UNESCO</a>
-            </strong>
+            <a href="http://www.unesco.org/new/en/venice/home/">UNESCO</a>
           </li>
           <li>
-            <strong>
-              <a href="http://www.wpi.edu/academics/GPP/Centers/venice695.html">
-                WPI Venice Project Center
-              </a>
-            </strong>{' '}
+            <a href="http://www.wpi.edu/academics/GPP/Centers/venice695.html">
+              WPI Venice Project Center
+            </a>
           </li>
           <li>
-            <strong>
-              <a href="http://www.earthwatch.org/">Earthwatch Institute</a>
-            </strong>
+            <a href="http://www.earthwatch.org/">Earthwatch Institute</a>
           </li>
         </ul>
       </Typography>

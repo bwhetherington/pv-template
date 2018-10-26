@@ -72,6 +72,9 @@ class Home extends React.Component {
     showFilters: false
   };
 
+  /**
+   * Shows the filter drawer.
+   */
   showDrawer = () => {
     console.log('Showing drawer?');
     this.setState({
@@ -80,6 +83,9 @@ class Home extends React.Component {
     });
   };
 
+  /**
+   * Hides the filter drawer.
+   */
   hideDrawer = () => {
     this.setState({
       ...this.state,
@@ -87,6 +93,10 @@ class Home extends React.Component {
     });
   };
 
+  /**
+   * Produces a handler to toggle the specified artifact type on or off.
+   * @param type the artifact type
+   */
   toggleType(type) {
     return () => {
       const { filter } = this.state;
@@ -101,15 +111,24 @@ class Home extends React.Component {
     };
   }
 
+  /**
+   * Produces a list containing the artifact types that have been selected to be filtered.
+   */
   filteredTypes() {
     const { filter } = this.state;
     return Object.keys(filter).filter(key => filter[key]);
   }
 
+  /**
+   * Renders the component.
+   */
   render() {
     const { classes } = this.props;
     const { showFilters } = this.state;
 
+    /**
+     * Foo
+     */
     const drawer = (
       <Drawer open={showFilters} onClose={this.hideDrawer}>
         <Typography variant="title" align="center" className={classes.filterTitle}>

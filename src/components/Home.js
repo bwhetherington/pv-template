@@ -17,7 +17,7 @@ import {
   ListItemText,
   Checkbox
 } from '@material-ui/core';
-import { getSampleArtifacts, take, map } from '../util';
+import { getSampleArtifacts, take, createMap } from '../util';
 
 const styles = theme => ({
   cards: {
@@ -50,6 +50,9 @@ const styles = theme => ({
 
 const artifacts = getSampleArtifacts();
 
+/**
+ * Represents all of the available artifact types.
+ */
 const artifactTypes = [
   'Coats of Arms',
   'Crosses',
@@ -68,7 +71,7 @@ const artifactTypes = [
 
 class Home extends React.Component {
   state = {
-    filter: map(artifactTypes, _ => false),
+    filter: createMap(artifactTypes, _ => false),
     showFilters: false
   };
 
@@ -126,10 +129,8 @@ class Home extends React.Component {
     const { classes } = this.props;
     const { showFilters } = this.state;
 
-    /**
-     * Foo
-     */
-    const drawer = (
+    // The drawer containing the filter options
+    const filterDrawer = (
       <Drawer open={showFilters} onClose={this.hideDrawer}>
         <Typography variant="title" align="center" className={classes.filterTitle}>
           Artifacts
@@ -147,7 +148,7 @@ class Home extends React.Component {
 
     return (
       <React.Fragment>
-        {drawer}
+        {filterDrawer}
         <Page selected="">
           <Typography variant="headline" align="center">
             PreserVenice

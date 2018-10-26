@@ -1,4 +1,13 @@
+/**
+ * Produces a list containing the first `n` elements from the specified list. If `n` is greater
+ * than the length of the list, the list is returned unmodified.
+ * @param n the number of elements to take
+ * @param xs the list to take from
+ */
 export const take = (n, xs) => {
+  if (n > xs.length) {
+    return xs;
+  }
   const taken = [];
   for (let i = 0; i < n; i++) {
     taken.push(xs[i]);
@@ -6,7 +15,13 @@ export const take = (n, xs) => {
   return taken;
 };
 
-export const map = (keys, f) => Object.assign(...keys.map(key => ({ [key]: f(key) })));
+/**
+ * Creates an object with the specified keys each pointing to a value created by passing the key
+ * to the specified transformation function.
+ * @param keys the list of keys
+ * @param f the transformation function
+ */
+export const createMap = (keys, f) => Object.assign(...keys.map(key => ({ [key]: f(key) })));
 
 export const getSampleArtifacts = () => [
   {

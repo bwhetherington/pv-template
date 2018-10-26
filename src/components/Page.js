@@ -11,8 +11,12 @@ const styles = theme => ({
   },
   content: {
     width: 'auto',
-    marginLeft: theme.spacing.unit * 3,
-    marginRight: theme.spacing.unit * 3,
+    // marginLeft: theme.spacing.unit * 3,
+    // marginRight: theme.spacing.unit * 3,
+    maxWidth: 1000,
+    paddingLeft: theme.spacing.unit * 3,
+    paddingRight: theme.spacing.unit * 3,
+    margin: 'auto',
     fontFamily: 'Roboto',
     paddingTop: theme.spacing.unit * 2,
     paddingBottom: theme.spacing.unit * 2

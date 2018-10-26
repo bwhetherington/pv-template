@@ -6,18 +6,14 @@ import { withStyles } from '@material-ui/core/styles';
 import { Paper, Typography } from '@material-ui/core';
 import { object } from 'prop-types';
 
-const styles = theme => ({
-  root: {
-    padding: theme.spacing.unit * 3
-  }
-});
+const styles = theme => ({});
 
 /**
  * A dummy about page.
  */
 const About = ({ classes }) => (
   <Page selected="about">
-    <Paper className={classes.root}>
+    <div className={classes.root}>
       <Typography variant="headline" align="center">
         About PreserVenice
       </Typography>
@@ -125,7 +121,7 @@ const About = ({ classes }) => (
           </li>
         </ul>
       </Typography>
-    </Paper>
+    </div>
   </Page>
 );
 

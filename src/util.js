@@ -6,6 +6,8 @@ export const take = (n, xs) => {
   return taken;
 };
 
+export const map = (keys, f) => Object.assign(...keys.map(key => ({ [key]: f(key) })));
+
 export const getSampleArtifacts = () => [
   {
     name: 'artifact1',

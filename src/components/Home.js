@@ -7,6 +7,7 @@ import ArtifactCard from './ArtifactCard';
 import { withStyles } from '@material-ui/core/styles';
 import { object, string } from 'prop-types';
 import {
+  Divider,
   Drawer,
   Typography,
   Grid,
@@ -17,7 +18,7 @@ import {
   ListItemText,
   Checkbox
 } from '@material-ui/core';
-import { getSampleArtifacts, take, createMap } from '../util';
+import { take, createMap, sampleArtifacts, artifactTypes, priorityArtifactsSample } from '../util';
 
 const styles = theme => ({
   cards: {
@@ -30,44 +31,43 @@ const styles = theme => ({
   card: {
     padding: theme.spacing.unit
   },
-  map: {
-    padding: theme.spacing.unit * 3,
-    height: 480
+  map: {},
+  mapControls: {
+    padding: theme.spacing.unit
+  },
+  mapControlButton: {
+    marginRight: theme.spacing.unit
   },
   filter: {
     width: '100%',
-    height: '100%',
-    padding: theme.spacing.unit
+    height: '100%'
   },
   filterTitle: {
-    padding: theme.spacing.unit
+    padding: theme.spacing.unit,
+    marginTop: theme.spacing.unit * 7
+    // background: theme.palette.background.paper
+  },
+  filterButton: {
+    width: '100%'
   },
   filterOptions: {
     maxHeight: '100%',
     overflowY: 'scroll'
+    // background: theme.palette.background.default
+  },
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0
+  },
+  content: {
+    marginLeft: drawerWidth,
+    flexGrow: 1
   }
 });
 
-const artifacts = getSampleArtifacts();
+const artifacts = sampleArtifacts;
 
-/**
- * Represents all of the available artifact types.
- */
-const artifactTypes = [
-  'Coats of Arms',
-  'Crosses',
-  'Decorations',
-  'Flagstaff Pedestals',
-  'Fountains',
-  'Fragments',
-  'Inscriptions',
-  'Other',
-  'Patere',
-  'Reliefs',
-  'Sculptures',
-  'Street Altars',
-  'Symbols'
-];
+const drawerWidth = 240;
 
 class Home extends React.Component {
   state = {
@@ -93,6 +93,22 @@ class Home extends React.Component {
     this.setState({
       ...this.state,
       showFilters: false
+    });
+  };
+
+  showAllArtifacts = () => {
+    const filter = createMap(artifactTypes, _ => true);
+    this.setState({
+      ...this.state,
+      filter
+    });
+  };
+
+  hideAllArtifacts = () => {
+    const filter = createMap(artifactTypes, _ => false);
+    this.setState({
+      ...this.state,
+      filter
     });
   };
 
@@ -131,13 +147,33 @@ class Home extends React.Component {
 
     // The drawer containing the filter options
     const filterDrawer = (
-      <Drawer open={showFilters} onClose={this.hideDrawer}>
-        <Typography variant="title" align="center" className={classes.filterTitle}>
-          Artifacts
-        </Typography>
+      <Drawer
+        variant="permanent"
+        open={showFilters}
+        onClose={this.hideDrawer}
+        className={classes.drawer}
+      >
+        <div className={classes.filterTitle}>
+          <Typography paragraph variant="title" align="center">
+            Artifacts
+          </Typography>
+          <Grid container spacing={16}>
+            <Grid item xs={6}>
+              <Button size="small" onClick={this.showAllArtifacts} className={classes.filterButton}>
+                All
+              </Button>
+            </Grid>
+            <Grid item xs={6}>
+              <Button size="small" onClick={this.hideAllArtifacts} className={classes.filterButton}>
+                None
+              </Button>
+            </Grid>
+          </Grid>
+        </div>
+        <Divider />
         <List className={classes.filterOptions}>
           {artifactTypes.map(type => (
-            <ListItem button key={type} onClick={this.toggleType(type)}>
+            <ListItem dense button key={type} onClick={this.toggleType(type)}>
               <Checkbox checked={this.state.filter[type]} disableRipple tabIndex={-1} />
               <ListItemText primary={type} />
             </ListItem>
@@ -148,39 +184,44 @@ class Home extends React.Component {
 
     return (
       <React.Fragment>
-        {filterDrawer}
         <Page selected="">
-          <Typography variant="headline" align="center">
-            PreserVenice
-          </Typography>
-          <Typography variant="subheading" align="center">
-            A Crowdfunding Solution to Preserving Venetian Heritage
-          </Typography>
-          <Separator />
-          <Grid container spacing={16} className={classes.map}>
-            <Grid item xs={9}>
+          {filterDrawer}
+          <div className={classes.content}>
+            <Typography variant="headline" align="center">
+              PreserVenice
+            </Typography>
+            <Typography variant="subheading" align="center">
+              A Crowdfunding Solution to Preserving Venetian Heritage
+            </Typography>
+            <Separator />
+            <Paper className={classes.map}>
               <Map artifactTypes={this.filteredTypes()} />
+              <div className={classes.mapControls}>
+                <Button
+                  color="primary"
+                  className={classes.mapControlButton}
+                  onClick={this.showDrawer}
+                >
+                  Filters
+                </Button>
+                <Button color="primary" className={classes.mapControlButton}>
+                  Options
+                </Button>
+              </div>
+            </Paper>
+            <br />
+            <Typography variant="headline" align="center">
+              Artifacts in Need
+            </Typography>
+            <Separator />
+            <Grid container spacing={16} className={classes.cards}>
+              {priorityArtifactsSample.map(artifact => (
+                <Grid item key={artifact.name} xs={4}>
+                  <ArtifactCard artifact={artifact} className={classes.card} />
+                </Grid>
+              ))}
             </Grid>
-            <Grid item xs={3}>
-              <Paper className={classes.filter}>
-                <Typography variant="subheading" align="center">
-                  Controls
-                </Typography>
-                <Button onClick={this.showDrawer}>Filters</Button>
-              </Paper>
-            </Grid>
-          </Grid>
-          <Typography variant="headline" align="center">
-            Artifacts in Need
-          </Typography>
-          <Separator />
-          <Grid container spacing={16} className={classes.cards}>
-            {take(3, artifacts).map(artifact => (
-              <Grid item key={artifact.name} xs={4}>
-                <ArtifactCard artifact={artifact} className={classes.card} />
-              </Grid>
-            ))}
-          </Grid>
+          </div>
         </Page>
       </React.Fragment>
     );

@@ -24,9 +24,9 @@ const onClick = href => () => {
 };
 
 const links = {
-  '': {
+  home: {
     name: 'Home',
-    handler: onClick('/')
+    handler: onClick('/home')
   },
   artifacts: {
     name: 'Artifacts',

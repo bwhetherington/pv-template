@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { withStyles } from '@material-ui/core/styles';
+import { Paper } from '@material-ui/core';
 import { object } from 'prop-types';
 import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 import { sampleArtifacts } from '../util';
@@ -8,12 +9,11 @@ import { sampleArtifacts } from '../util';
 const styles = theme => ({
   map: {
     width: '100%',
-    height: 480
+    height: '500px'
   },
   mapElement: {
     height: '100%',
-    borderTopLeftRadius: '5px',
-    borderTopRightRadius: '5px'
+    borderRadius: '4px'
   }
 });
 
@@ -45,14 +45,12 @@ const renderArtifacts = (artifacts, filter) =>
  * @param props
  */
 const Map = ({ artifactTypes, classes }) => (
-  <div className={classes.map}>
-    <MapWrapper
-      containerElement={<div className={classes.map} />}
-      mapElement={<div className={classes.mapElement} />}
-    >
-      {renderArtifacts(sampleArtifacts, artifactTypes)}
-    </MapWrapper>
-  </div>
+  <MapWrapper
+    containerElement={<Paper className={classes.map} />}
+    mapElement={<div className={classes.mapElement} />}
+  >
+    {renderArtifacts(sampleArtifacts, artifactTypes)}
+  </MapWrapper>
 );
 
 Map.propTypes = {

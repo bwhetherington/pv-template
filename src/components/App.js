@@ -1,9 +1,10 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import About from './About';
 import Artifact from './Artifact';
 import ArtifactList from './ArtifactList';
 import Contact from './Contact';
+import ArtifactsPage from './ArtifactsPage';
 import Home from './Home';
 import NotFound from './NotFound';
 
@@ -19,10 +20,12 @@ const ArtifactWrapper = props => <Artifact artifactId={props.match.params.artifa
  */
 const Artifacts = _ => (
   <Switch>
-    <Route exact path="/artifacts" component={ArtifactList} />
+    <Route exact path="/artifacts" component={ArtifactsPage} />
     <Route path="/artifacts/:artifactId" component={ArtifactWrapper} />
   </Switch>
 );
+
+const HomeRedirect = _ => <Redirect to="/home" />;
 
 /**
  * This component handles routing to specific pages.
@@ -30,7 +33,8 @@ const Artifacts = _ => (
 const App = _ => (
   <Router>
     <Switch>
-      <Route exact path="/" component={Home} />
+      <Route exact path="/" component={HomeRedirect} />
+      <Route exact path="/home" component={Home} />
       <Route exact path="/about" component={About} />
       <Route exact path="/contact" component={Contact} />
       <Route path="/artifacts" component={Artifacts} />

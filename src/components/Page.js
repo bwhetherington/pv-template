@@ -9,14 +9,22 @@ const styles = theme => ({
   root: {
     minHeight: '100%'
   },
-  content: {
+  contentWide: {
     width: 'auto',
     marginLeft: theme.spacing.unit * 3,
     marginRight: theme.spacing.unit * 3,
-    // maxWidth: 1000,
-    // paddingLeft: theme.spacing.unit * 3,
-    // paddingRight: theme.spacing.unit * 3,
-    // margin: 'auto',
+    fontFamily: 'Roboto',
+    paddingTop: theme.spacing.unit * 2,
+    paddingBottom: theme.spacing.unit * 2
+  },
+  content: {
+    // width: 'auto',
+    // marginLeft: theme.spacing.unit * 3,
+    // marginRight: theme.spacing.unit * 3,
+    maxWidth: 1000,
+    paddingLeft: theme.spacing.unit * 3,
+    paddingRight: theme.spacing.unit * 3,
+    margin: 'auto',
     fontFamily: 'Roboto',
     paddingTop: theme.spacing.unit * 2,
     paddingBottom: theme.spacing.unit * 2
@@ -35,17 +43,20 @@ const styles = theme => ({
   }
 });
 
-const Page = ({ classes, children, selected }) => (
-  <div className={classes.root}>
-    <Navbar selected={selected} />
-    <div className={classes.content}>{children}</div>
-    <footer className={classes.footer}>
-      <Typography variant="caption" align="right">
-        Copyright © 2018 · PreserVenice · All Rights Reserved
-      </Typography>
-    </footer>
-  </div>
-);
+const Page = ({ classes, children, selected, wide }) => {
+  console.log(`wide = ${wide}`);
+  return (
+    <div className={classes.root}>
+      <Navbar selected={selected} />
+      <div className={wide ? classes.contentWide : classes.content}>{children}</div>
+      <footer className={classes.footer}>
+        <Typography variant="caption" align="right">
+          Copyright © 2018 · PreserVenice · All Rights Reserved
+        </Typography>
+      </footer>
+    </div>
+  );
+};
 
 Page.propTypes = {
   classes: object.isRequired,

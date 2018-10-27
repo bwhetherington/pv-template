@@ -7,7 +7,8 @@ import { AppBar, Toolbar, Typography } from '@material-ui/core';
 
 const styles = theme => ({
   appBar: {
-    position: 'relative'
+    // position: 'relative',
+    zIndex: theme.zIndex.drawer + 1
   },
   toolbarTitle: {
     flex: '1'
@@ -54,7 +55,7 @@ const renderLinks = (selected, links) =>
   ));
 
 const Navbar = ({ classes, selected }) => (
-  <AppBar position="static" className={classes.appBar}>
+  <AppBar position="sticky" className={classes.appBar}>
     <Toolbar variant="dense">
       <Typography variant="title" color="inherit" noWrap className={classes.toolbarTitle}>
         PreserVenice

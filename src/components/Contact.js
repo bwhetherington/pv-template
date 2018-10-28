@@ -12,8 +12,20 @@ const styles = _ => {};
  */
 const Contact = _ => (
   <Page selected="contact">
-    <Typography variant="headline">Contact us</Typography>
-    <Typography>Contact us</Typography>
+    <Typography paragraph variant="headline">
+      Contact us, Help us preserve Venetian heritage!
+    </Typography>
+    <Typography paragraph variant="title">
+      Follow our Instagram At:{' '}
+      <a href="https://www.instagram.com/preservenice/?hl=en">@preservenice</a>
+    </Typography>
+    <Typography paragraph variant="title">
+      Like Us on Facebook: <a href="http://www.unesco.org/new/en/venice/home/">Facebook</a>
+      {/**TODO add real link to facebook and email! */}
+    </Typography>
+    <Typography variant="title">
+      Email us: <a href="ve18.pv@gmail.com">ve18.pv@gmail.com</a>
+    </Typography>
   </Page>
 );
 

@@ -107,7 +107,6 @@ const About = ({ classes }) => (
       <Typography paragraph>
         PreserVenice acknowledges the support of the following organizations.
         <ul>
-          {/**TODO add hyperlinks */}
           <li>
             <a href="http://www.unesco.org/new/en/venice/home/">UNESCO</a>
           </li>

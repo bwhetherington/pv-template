@@ -142,7 +142,7 @@ const generateArtifact = () => {
 //   }
 // ];
 
-const numberToGenerate = 20;
+const numberToGenerate = 7000;
 
 const generateSampleArtifacts = () => {
   const artifacts = [];
@@ -166,3 +166,9 @@ export const prioritySample = artifacts =>
   [...artifacts].sort(({ priority: a }, { priority: b }) => b - a);
 
 export const priorityArtifactsSample = take(3, prioritySample(sampleArtifacts));
+
+export const windowWidth = () =>
+  window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+
+export const windowHeight = () =>
+  window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;

@@ -6,6 +6,8 @@ import { theme } from './theme';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
+import Map from './components/Map';
+
 ReactDOM.render(
   <MuiThemeProvider theme={theme}>
     <CssBaseline />

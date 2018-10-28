@@ -10,9 +10,9 @@ import { withStyles } from '@material-ui/core/styles';
 const styles = theme => ({
   cards: {
     padding: theme.spacing.unit * 3,
-    // flexWrap: 'nowrap',
+    flexWrap: 'nowrap',
     // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
-    // transform: 'translateZ(0)'
+    transform: 'translateZ(0)',
     height: '100%'
   },
   card: {

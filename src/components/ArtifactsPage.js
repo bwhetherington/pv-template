@@ -17,12 +17,6 @@ import {
 } from '@material-ui/core';
 import { take, createMap, sampleArtifacts, artifactTypes, priorityArtifactsSample } from '../util';
 
-const contentStyle = {
-  width: 'auto',
-  marginLeft: 8 * 3,
-  marginRight: 8 * 3
-};
-
 const styles = theme => ({
   mapControls: {
     padding: theme.spacing.unit
@@ -43,7 +37,6 @@ const styles = theme => ({
     width: '100%'
   },
   filterOptions: {
-    maxHeight: '100%',
     overflowY: 'scroll'
     // background: theme.palette.background.default
   },
@@ -53,8 +46,9 @@ const styles = theme => ({
   },
   content: {
     marginLeft: drawerWidth,
-    flexGrow: 1,
-    height: '100%'
+    height: '100%',
+    background: 'black',
+    overflowY: 'hidden'
   }
 });
 
@@ -174,28 +168,12 @@ class ArtifactPage extends React.Component {
     );
 
     return (
-      <React.Fragment>
-        <Page selected="artifacts" wide={true}>
-          {filterDrawer}
-          <div className={classes.content}>
-            {/* <Paper> */}
-            <Map artifactTypes={this.filteredTypes()} />
-            {/* <div className={classes.mapControls}>
-                <Button
-                  color="primary"
-                  className={classes.mapControlButton}
-                  onClick={this.showDrawer}
-                >
-                  Filters
-                </Button>
-                <Button color="primary" className={classes.mapControlButton}>
-                  Options
-                </Button>
-              </div> */}
-            {/* </Paper> */}
-          </div>
-        </Page>
-      </React.Fragment>
+      <Page selected="artifacts" fullScreen={true}>
+        {filterDrawer}
+        <div className={classes.content}>
+          <Map artifactTypes={this.filteredTypes()} />
+        </div>
+      </Page>
     );
   }
 }

@@ -1,19 +1,24 @@
 import React from 'react';
 
 import { withStyles } from '@material-ui/core/styles';
-import { Paper } from '@material-ui/core';
 import { object } from 'prop-types';
 import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
-import { sampleArtifacts } from '../util';
+import { sampleArtifacts, windowHeight } from '../util';
+
+// This is an unbelievably janky solution but it works FOR NOW
+// We are simply subtracting the height of the header from the height of the map.
+// TODO figure out how to programmatically check the height of the header
+const headerSize = 48;
+const height = `calc(100% - ${headerSize}px)`;
 
 const styles = theme => ({
   map: {
     width: '100%',
-    height: '500px'
+    height,
+    background: 'black'
   },
   mapElement: {
-    height: '100%',
-    borderRadius: '4px'
+    height: '100%'
   }
 });
 
@@ -45,8 +50,9 @@ const renderArtifacts = (artifacts, filter) =>
  * @param props
  */
 const Map = ({ artifactTypes, classes }) => (
+  // <div className={classes.map} />
   <MapWrapper
-    containerElement={<Paper className={classes.map} />}
+    containerElement={<div className={classes.map} />}
     mapElement={<div className={classes.mapElement} />}
   >
     {renderArtifacts(sampleArtifacts, artifactTypes)}

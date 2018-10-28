@@ -9,6 +9,7 @@ const styles = theme => ({
   appBar: {
     // position: 'relative',
     zIndex: theme.zIndex.drawer + 1
+    // flex: '0'
   },
   toolbarTitle: {
     flex: '1'
@@ -54,8 +55,8 @@ const renderLinks = (selected, links) =>
     </NavButton>
   ));
 
-const Navbar = ({ classes, selected }) => (
-  <AppBar position="sticky" className={classes.appBar}>
+const Navbar = ({ classes, selected, position = 'sticky' }) => (
+  <AppBar position={position} className={classes.appBar}>
     <Toolbar variant="dense">
       <Typography variant="title" color="inherit" noWrap className={classes.toolbarTitle}>
         PreserVenice

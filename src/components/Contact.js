@@ -20,7 +20,7 @@ const Contact = _ => (
       <a href="https://www.instagram.com/preservenice/?hl=en">@preservenice</a>
     </Typography>
     <Typography paragraph variant="title">
-      Like Us on Facebook: <a href="http://www.unesco.org/new/en/venice/home/">Facebook</a>
+      Like Us on Facebook: <a href="https://www.facebook.com/preservenice/">Facebook</a>
       {/**TODO add real link to facebook and email! */}
     </Typography>
     <Typography variant="title">

@@ -29,6 +29,10 @@ const center = {
 
 const zoom = 14;
 
+const options = {
+  disableDefaultUI: true
+};
+
 const MapWrapper = withGoogleMap(props => (
   <GoogleMap defaultCenter={center} defaultZoom={zoom} {...props} />
 ));
@@ -59,6 +63,7 @@ const Map = ({ artifactTypes, classes, onArtifactClick }) => (
   <MapWrapper
     containerElement={<div className={classes.map} />}
     mapElement={<div className={classes.mapElement} />}
+    options={options}
   >
     {renderArtifacts(sampleArtifacts, artifactTypes, onArtifactClick)}
   </MapWrapper>

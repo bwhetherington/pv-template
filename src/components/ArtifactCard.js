@@ -40,7 +40,11 @@ const ArtifactCard = ({ artifact, classes, onClick }) => (
         <Typography gutterBottom variant="subheading" component="h2">
           {artifact.namePretty}
         </Typography>
-        <Typography paragraph>This is a fancy description of the artifact, maybe?</Typography>
+        <Typography paragraph>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam et sodales arcu. Curabitur
+          eleifend sagittis pretium. Suspendisse scelerisque arcu at arcu interdum, eget posuere
+          justo ornare.
+        </Typography>
         <LinearProgress
           className={classes.progress}
           variant="determinate"

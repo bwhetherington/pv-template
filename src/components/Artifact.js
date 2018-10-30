@@ -10,22 +10,45 @@ import {
   withMobileDialog,
   DialogContentText,
   DialogContent,
-  DialogTitle
+  DialogTitle,
+  IconButton
 } from '@material-ui/core';
+import CloseIcon from '@material-ui/icons/Close';
 
-const styles = _ => {};
+const styles = _ => ({
+  description: {
+    // minWidth: '600px'
+  },
+  close: {
+    float: 'right'
+  }
+});
 
 /**
  * This component renders a page for the artifact with the specified artifact ID.
  * @param {object} props
  */
-const Artifact = ({ fullScreen, open, onClose, artifact }) => {
+const Artifact = ({ fullScreen, open, onClose, artifact, classes }) => {
   const { namePretty } = artifact;
   return (
     <Dialog fullScreen={fullScreen} open={open} onClose={onClose}>
-      <DialogTitle>{namePretty}</DialogTitle>
+      <DialogTitle>
+        {namePretty}
+        <span className={classes.close}>
+          <IconButton onClick={onClose}>
+            <CloseIcon />
+          </IconButton>
+        </span>
+      </DialogTitle>
       <DialogContent>
-        <DialogContentText>Artifact data goes here</DialogContentText>
+        <DialogContentText className={classes.description}>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam et sodales arcu. Curabitur
+          eleifend sagittis pretium. Suspendisse scelerisque arcu at arcu interdum, eget posuere
+          justo ornare. Aliquam rhoncus aliquet placerat. Cras id eros lacus. Donec ultricies arcu
+          nulla, quis mollis massa pharetra in. Etiam nec lectus sed ipsum mollis hendrerit sed in
+          turpis. Sed laoreet, elit non mollis sagittis, metus velit gravida magna, ut tincidunt
+          augue eros vitae ex. Quisque feugiat pretium ligula.
+        </DialogContentText>
       </DialogContent>
       <DialogActions>
         <Button color="primary">Share</Button>
@@ -40,4 +63,4 @@ Artifact.propTypes = {
   artifact: object.isRequired
 };
 
-export default withMobileDialog()(withStyles(styles)(Artifact));
+export default withMobileDialog({ breakpoint: 'md' })(withStyles(styles)(Artifact));

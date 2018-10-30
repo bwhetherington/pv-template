@@ -5,7 +5,7 @@ import ArtifactCard from './ArtifactCard';
 import withArtifactDialog from './withArtifactDialog';
 import { Typography, Grid } from '@material-ui/core';
 import { priorityArtifactsSample } from '../util';
-import { object } from 'prop-types';
+import { object, func } from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
@@ -56,7 +56,8 @@ const Home = ({ classes, onArtifactClick }) => (
 );
 
 Home.propTypes = {
-  classes: object.isRequired
+  classes: object.isRequired,
+  onArtifactClick: func.isRequired
 };
 
 export default withArtifactDialog(withStyles(styles)(Home));

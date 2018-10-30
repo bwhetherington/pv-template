@@ -3,7 +3,7 @@ import Map from './Map';
 import Page from './Page';
 import withArtifactDialog from './withArtifactDialog';
 import { withStyles } from '@material-ui/core/styles';
-import { object, string } from 'prop-types';
+import { object, string, func } from 'prop-types';
 import {
   Divider,
   Drawer,
@@ -181,7 +181,8 @@ class ArtifactPage extends React.Component {
 
 ArtifactPage.propTypes = {
   classes: object.isRequired,
-  selected: string
+  selected: string,
+  onArtifactClick: func.isRequired
 };
 
 export default withArtifactDialog(withStyles(styles)(ArtifactPage));

@@ -7,6 +7,11 @@ class ArtifactDialogWrapper extends React.Component {
     currentArtifact: null
   };
 
+  /**
+   * Produces a click handler that causes the wrapper to display the specified artifact when
+   * activated.
+   * @param {object} artifact the artifact to display
+   */
   onArtifactClick = artifact => () =>
     this.setState({
       ...this.state,
@@ -14,19 +19,26 @@ class ArtifactDialogWrapper extends React.Component {
       currentArtifact: artifact
     });
 
-  onArtifactHide = () =>
+  /**
+   * Hides the currently displayed artifact.
+   */
+  hideArtifact = () =>
     this.setState({
       ...this.state,
       showArtifact: false,
       currentArtifact: null
     });
 
+  /**
+   * Renders the artifact dialog if it is open, and the child component. All props are passed to
+   * the child component.
+   */
   render() {
     const { Container, componentProps } = this.props;
     const { showArtifact, currentArtifact } = this.state;
 
     const artifactDialog = showArtifact ? (
-      <Artifact open={showArtifact} onClose={this.onArtifactHide} artifact={currentArtifact} />
+      <Artifact open={showArtifact} onClose={this.hideArtifact} artifact={currentArtifact} />
     ) : (
       <div />
     );
@@ -40,6 +52,11 @@ class ArtifactDialogWrapper extends React.Component {
   }
 }
 
+/**
+ * Produces a new component that is equal to the specified component wrapped with a component that
+ * displays an artifact dialog when the child's `onArtifactClick` handler is called.
+ * @param component the component to wrap
+ */
 const withArtifactDialog = component => props => (
   <ArtifactDialogWrapper Container={component} componentProps={props} />
 );

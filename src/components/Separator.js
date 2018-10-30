@@ -10,6 +10,9 @@ const styles = theme => ({
   }
 });
 
+/**
+ * The separator is a simple line with spacing above and below it.
+ */
 const Separator = ({ classes }) => (
   <div className={classes.separator}>
     <Divider />

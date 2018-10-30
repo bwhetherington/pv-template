@@ -3,10 +3,6 @@ import { object, bool } from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { ButtonBase, Typography } from '@material-ui/core';
 
-/**
- *
- * @param {object} theme
- */
 const buttonStyles = theme => ({
   button: {
     height: '100%',

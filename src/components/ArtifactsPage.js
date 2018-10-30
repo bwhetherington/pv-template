@@ -1,6 +1,7 @@
 import React from 'react';
 import Map from './Map';
 import Page from './Page';
+import Artifact from './Artifact';
 import { withStyles } from '@material-ui/core/styles';
 import { object, string } from 'prop-types';
 import {
@@ -57,7 +58,9 @@ const drawerWidth = 240;
 class ArtifactPage extends React.Component {
   state = {
     filter: createMap(artifactTypes, _ => false),
-    showFilters: false
+    showFilters: false,
+    showArtifact: false,
+    currentArtifact: null
   };
 
   /**
@@ -97,6 +100,22 @@ class ArtifactPage extends React.Component {
     });
   };
 
+  hideArtifact = () => {
+    this.setState({
+      ...this.state,
+      showArtifact: false,
+      currentArtifact: null
+    });
+  };
+
+  onArtifactClick = artifact => () => {
+    this.setState({
+      ...this.state,
+      showArtifact: true,
+      currentArtifact: artifact
+    });
+  };
+
   /**
    * Produces a handler to toggle the specified artifact type on or off.
    * @param type the artifact type
@@ -128,7 +147,7 @@ class ArtifactPage extends React.Component {
    */
   render() {
     const { classes } = this.props;
-    const { showFilters } = this.state;
+    const { showFilters, showArtifact, currentArtifact } = this.state;
 
     // The drawer containing the filter options
     const filterDrawer = (
@@ -167,11 +186,18 @@ class ArtifactPage extends React.Component {
       </Drawer>
     );
 
+    const artifactDialog = showArtifact ? (
+      <Artifact open={showArtifact} onClose={this.hideArtifact} artifact={currentArtifact} />
+    ) : (
+      <div />
+    );
+
     return (
       <Page selected="artifacts" fullScreen={true}>
         {filterDrawer}
+        {artifactDialog}
         <div className={classes.content}>
-          <Map artifactTypes={this.filteredTypes()} />
+          <Map artifactTypes={this.filteredTypes()} onArtifactClick={this.onArtifactClick} />
         </div>
       </Page>
     );

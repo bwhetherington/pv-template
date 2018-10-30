@@ -67,9 +67,7 @@ export const artifactTypes = [
   'Symbols'
 ];
 
-let artifactCount = 0;
-
-const generateArtifact = () => {
+const generateArtifact = artifactCount => {
   const name = `artifact${artifactCount}`;
 
   const typeId = Math.trunc(Math.random() * artifactTypes.length);
@@ -89,7 +87,6 @@ const generateArtifact = () => {
     amountNeeded,
     position: randomCoords()
   };
-  artifactCount++;
 
   return artifact;
 };
@@ -142,12 +139,14 @@ const generateArtifact = () => {
 //   }
 // ];
 
-const numberToGenerate = 7000;
+const numberToGenerate = 200;
 
 const generateSampleArtifacts = () => {
+  let artifactCount = 0;
   const artifacts = [];
   for (let i = 0; i < numberToGenerate; i++) {
-    const artifact = generateArtifact();
+    const artifact = generateArtifact(artifactCount);
+    artifactCount++;
     artifacts.push(artifact);
   }
   return artifacts;

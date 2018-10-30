@@ -25,9 +25,9 @@ const styles = theme => ({
   }
 });
 
-const ArtifactCard = ({ artifact, classes }) => (
+const ArtifactCard = ({ artifact, classes, onClick }) => (
   <Card className={classes.card}>
-    <CardActionArea href={`/artifacts/${artifact.name}`}>
+    <CardActionArea onClick={onClick}>
       <CardMedia
         component="img"
         alt="Artifact"

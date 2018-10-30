@@ -3,7 +3,15 @@ import Page from './Page';
 
 import { withStyles } from '@material-ui/core/styles';
 import { object, string } from 'prop-types';
-import { Typography } from '@material-ui/core';
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  withMobileDialog,
+  DialogContentText,
+  DialogContent,
+  DialogTitle
+} from '@material-ui/core';
 
 const styles = _ => {};
 
@@ -11,15 +19,25 @@ const styles = _ => {};
  * This component renders a page for the artifact with the specified artifact ID.
  * @param {object} props
  */
-const Artifact = ({ artifactId }) => (
-  <Page selected="artifacts">
-    <Typography>Artifact page for {artifactId}</Typography>
-  </Page>
-);
+const Artifact = ({ fullScreen, open, onClose, artifact }) => {
+  const { namePretty } = artifact;
+  return (
+    <Dialog fullScreen={fullScreen} open={open} onClose={onClose}>
+      <DialogTitle>{namePretty}</DialogTitle>
+      <DialogContent>
+        <DialogContentText>Artifact data goes here</DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        <Button color="primary">Share</Button>
+        <Button color="primary">Donate</Button>
+      </DialogActions>
+    </Dialog>
+  );
+};
 
 Artifact.propTypes = {
   classes: object.isRequired,
-  artifactId: string.isRequired
+  artifact: object.isRequired
 };
 
-export default withStyles(styles)(Artifact);
+export default withMobileDialog()(withStyles(styles)(Artifact));

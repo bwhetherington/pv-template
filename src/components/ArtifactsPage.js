@@ -1,8 +1,9 @@
 import React from 'react';
 import Map from './Map';
 import Page from './Page';
+import withArtifactDialog from './withArtifactDialog';
 import { withStyles } from '@material-ui/core/styles';
-import { object, string } from 'prop-types';
+import { object, string, func } from 'prop-types';
 import {
   Divider,
   Drawer,
@@ -127,8 +128,8 @@ class ArtifactPage extends React.Component {
    * Renders the component.
    */
   render() {
-    const { classes } = this.props;
-    const { showFilters } = this.state;
+    const { classes, onArtifactClick } = this.props;
+    const { showFilters, showArtifact, currentArtifact } = this.state;
 
     // The drawer containing the filter options
     const filterDrawer = (
@@ -171,7 +172,7 @@ class ArtifactPage extends React.Component {
       <Page selected="artifacts" fullScreen={true}>
         {filterDrawer}
         <div className={classes.content}>
-          <Map artifactTypes={this.filteredTypes()} />
+          <Map artifactTypes={this.filteredTypes()} onArtifactClick={onArtifactClick} />
         </div>
       </Page>
     );
@@ -180,7 +181,8 @@ class ArtifactPage extends React.Component {
 
 ArtifactPage.propTypes = {
   classes: object.isRequired,
-  selected: string
+  selected: string,
+  onArtifactClick: func.isRequired
 };
 
-export default withStyles(styles)(ArtifactPage);
+export default withArtifactDialog(withStyles(styles)(ArtifactPage));

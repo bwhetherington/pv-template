@@ -2,9 +2,10 @@ import React from 'react';
 import Page from './Page';
 import Separator from './Separator';
 import ArtifactCard from './ArtifactCard';
+import withArtifactDialog from './withArtifactDialog';
 import { Typography, Grid } from '@material-ui/core';
 import { priorityArtifactsSample } from '../util';
-import { object } from 'prop-types';
+import { object, func } from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
@@ -20,7 +21,7 @@ const styles = theme => ({
   }
 });
 
-const Home = ({ classes }) => (
+const Home = ({ classes, onArtifactClick }) => (
   <Page selected="home">
     <Typography variant="headline" align="center">
       PreserVenice
@@ -43,7 +44,11 @@ const Home = ({ classes }) => (
     <Grid container spacing={16} className={classes.cards}>
       {priorityArtifactsSample.map(artifact => (
         <Grid item key={artifact.name} xs={4}>
-          <ArtifactCard artifact={artifact} className={classes.card} />
+          <ArtifactCard
+            artifact={artifact}
+            className={classes.card}
+            onClick={onArtifactClick(artifact)}
+          />
         </Grid>
       ))}
     </Grid>
@@ -51,7 +56,8 @@ const Home = ({ classes }) => (
 );
 
 Home.propTypes = {
-  classes: object.isRequired
+  classes: object.isRequired,
+  onArtifactClick: func.isRequired
 };
 
-export default withStyles(styles)(Home);
+export default withArtifactDialog(withStyles(styles)(Home));

@@ -29,33 +29,68 @@ const center = {
 
 const zoom = 14;
 
+const options = {
+  styles: [
+    {
+      featureType: 'administrative',
+      elementType: 'labels',
+      stylers: [{ visibility: 'off' }]
+    },
+    {
+      featureType: 'poi',
+      elementType: 'labels',
+      stylers: [{ visibility: 'off' }]
+    },
+    // {
+    //   featureType: 'water',
+    //   elementType: 'labels',
+    //   stylers: [{ visibility: 'off' }]
+    // },
+    {
+      featureType: 'road',
+      elementType: 'labels',
+      stylers: [{ visibility: 'off' }]
+    },
+    {
+      featureType: 'transit',
+      elementType: 'labels',
+      stylers: [{ visibility: 'off' }]
+    }
+  ]
+};
+
 const MapWrapper = withGoogleMap(props => (
   <GoogleMap defaultCenter={center} defaultZoom={zoom} {...props} />
 ));
 
-const onArtifactClick = name => () => {
-  location.href = `/artifacts/${name}`;
-};
-
-const renderArtifacts = (artifacts, filter) =>
+const renderArtifacts = (artifacts, filter, onArtifactClick) =>
   artifacts
     .filter(({ type }) => filter.indexOf(type) >= 0) // TODO make this filter not slow
-    .map(({ name, namePretty, position }) => (
-      <Marker key={name} title={namePretty} position={position} onClick={onArtifactClick(name)} />
-    ));
+    .map(artifact => {
+      const { name, namePretty, position } = artifact;
+      return (
+        <Marker
+          id={name}
+          key={name}
+          title={namePretty}
+          position={position}
+          onClick={onArtifactClick(artifact)}
+        />
+      );
+    });
 
 /**
  * A dummy map component.
  * Google Maps API Key: <API KEY>
  * @param props
  */
-const Map = ({ artifactTypes, classes }) => (
-  // <div className={classes.map} />
+const Map = ({ artifactTypes, classes, onArtifactClick }) => (
   <MapWrapper
     containerElement={<div className={classes.map} />}
     mapElement={<div className={classes.mapElement} />}
+    options={options}
   >
-    {renderArtifacts(sampleArtifacts, artifactTypes)}
+    {renderArtifacts(sampleArtifacts, artifactTypes, onArtifactClick)}
   </MapWrapper>
 );
 

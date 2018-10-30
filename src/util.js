@@ -1,10 +1,8 @@
-import { number } from 'prop-types';
-
 /**
  * Produces a list containing the first `n` elements from the specified list. If `n` is greater
  * than the length of the list, the list is returned unmodified.
- * @param n the number of elements to take
- * @param xs the list to take from
+ * @param {number} n the number of elements to take
+ * @param {array} xs the list to take from
  */
 export const take = (n, xs) => {
   if (n > xs.length) {
@@ -20,8 +18,8 @@ export const take = (n, xs) => {
 /**
  * Creates an object with the specified keys each pointing to a value created by passing the key
  * to the specified transformation function.
- * @param keys the list of keys
- * @param f the transformation function
+ * @param {array} keys the list of keys
+ * @param {func} f the transformation function
  */
 export const createMap = (keys, f) => Object.assign(...keys.map(key => ({ [key]: f(key) })));
 
@@ -35,8 +33,8 @@ const venice = {
  * center by plus or minus the specified variance. This function should only be used for generating
  * random coordinates for testing artifacts, and should be removed when we have actual artifact
  * data.
- * @param center the center
- * @param variance the variance
+ * @param {object} center the center
+ * @param {number} variance the variance
  */
 const randomCoords = (center = venice, variance = 0.01) => {
   const latOffset = (Math.random() - 0.5) * variance * 2;
@@ -67,9 +65,11 @@ export const artifactTypes = [
   'Symbols'
 ];
 
-let artifactCount = 0;
-
-const generateArtifact = () => {
+/**
+ * Produces a list of randomly generated artifacts.
+ * @param {number} artifactCount the number of artifacts to generate
+ */
+const generateArtifact = artifactCount => {
   const name = `artifact${artifactCount}`;
 
   const typeId = Math.trunc(Math.random() * artifactTypes.length);
@@ -89,72 +89,36 @@ const generateArtifact = () => {
     amountNeeded,
     position: randomCoords()
   };
-  artifactCount++;
 
   return artifact;
 };
 
-// const generateSampleArtifacts = () => [
-//   {
-//     name: 'artifact1',
-//     type: 'Inscriptions',
-//     namePretty: 'Inscription',
-//     coverImage: 'dist/default-img.png',
-//     amountDonated: 370,
-//     amountNeeded: 950,
-//     position: randomCoords()
-//   },
-//   {
-//     name: 'artifact2',
-//     type: 'Inscriptions',
-//     namePretty: 'Inscription',
-//     coverImage: 'dist/default-img.png',
-//     amountDonated: 75,
-//     amountNeeded: 770,
-//     position: randomCoords()
-//   },
-//   {
-//     name: 'artifact3',
-//     type: 'Fountains',
-//     namePretty: 'Fountain',
-//     coverImage: 'dist/default-img.png',
-//     amountDonated: 640,
-//     amountNeeded: 800,
-//     position: randomCoords()
-//   },
-//   {
-//     name: 'artifact4',
-//     type: 'Reliefs',
-//     namePretty: 'Relief',
-//     coverImage: 'dist/default-img.png',
-//     amountDonated: 200,
-//     amountNeeded: 1200,
-//     position: randomCoords()
-//   },
-//   {
-//     name: 'artifact5',
-//     type: 'Symbols',
-//     namePretty: 'Symbol',
-//     coverImage: 'dist/default-img.png',
-//     amountDonated: 200,
-//     amountNeeded: 1200,
-//     position: randomCoords()
-//   }
-// ];
+const numberToGenerate = 200;
 
-const numberToGenerate = 7000;
-
+/**
+ * Produces a sample of randomly-generated artifacts.
+ */
 const generateSampleArtifacts = () => {
+  let artifactCount = 0;
   const artifacts = [];
   for (let i = 0; i < numberToGenerate; i++) {
-    const artifact = generateArtifact();
+    const artifact = generateArtifact(artifactCount);
+    artifactCount++;
     artifacts.push(artifact);
   }
   return artifacts;
 };
 
+/**
+ * Produces an estimate of the priority of the specified artifact.
+ * @param {object} artifact the artifact
+ */
 export const estimatePriority = ({ amountDonated, amountNeeded }) => amountDonated / amountNeeded;
 
+/**
+ * Produces a view of the specified artifact, containing all necessary fields to be rendered.
+ * @param {object} artifact the artifact to view
+ */
 export const viewArtifact = artifact => ({
   ...artifact,
   priority: estimatePriority(artifact)
@@ -162,13 +126,11 @@ export const viewArtifact = artifact => ({
 
 export const sampleArtifacts = generateSampleArtifacts().map(viewArtifact);
 
+/**
+ * Produces a list of artifacts equal to the specified list, sorted by priority.
+ * @param {array} artifacts
+ */
 export const prioritySample = artifacts =>
   [...artifacts].sort(({ priority: a }, { priority: b }) => b - a);
 
 export const priorityArtifactsSample = take(3, prioritySample(sampleArtifacts));
-
-export const windowWidth = () =>
-  window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-
-export const windowHeight = () =>
-  window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;

@@ -1,7 +1,7 @@
 import React from 'react';
 import Artifact from './Artifact';
 
-class ArtifactDialogWrapper extends React.Class {
+class ArtifactDialogWrapper extends React.Component {
   state = {
     showArtifact: false,
     currentArtifact: null
@@ -22,11 +22,11 @@ class ArtifactDialogWrapper extends React.Class {
     });
 
   render() {
-    const { Container } = this.props;
+    const { Container, componentProps } = this.props;
     const { showArtifact, currentArtifact } = this.state;
 
     const artifactDialog = showArtifact ? (
-      <Artifact open={showArtifact} onClose={this.hideArtifact} artifact={currentArtifact} />
+      <Artifact open={showArtifact} onClose={this.onArtifactHide} artifact={currentArtifact} />
     ) : (
       <div />
     );
@@ -34,10 +34,14 @@ class ArtifactDialogWrapper extends React.Class {
     return (
       <React.Fragment>
         {artifactDialog}
-        <Container onArtifactClick={this.onArtifactClick} />
+        <Container onArtifactClick={this.onArtifactClick} {...componentProps} />
       </React.Fragment>
     );
   }
 }
 
-export default ArtifactDialogWrapper;
+const withArtifactDialog = component => props => (
+  <ArtifactDialogWrapper Container={component} componentProps={props} />
+);
+
+export default withArtifactDialog;

@@ -30,7 +30,33 @@ const center = {
 const zoom = 14;
 
 const options = {
-  disableDefaultUI: true
+  styles: [
+    {
+      featureType: 'administrative',
+      elementType: 'labels',
+      stylers: [{ visibility: 'off' }]
+    },
+    {
+      featureType: 'poi',
+      elementType: 'labels',
+      stylers: [{ visibility: 'off' }]
+    },
+    // {
+    //   featureType: 'water',
+    //   elementType: 'labels',
+    //   stylers: [{ visibility: 'off' }]
+    // },
+    {
+      featureType: 'road',
+      elementType: 'labels',
+      stylers: [{ visibility: 'off' }]
+    },
+    {
+      featureType: 'transit',
+      elementType: 'labels',
+      stylers: [{ visibility: 'off' }]
+    }
+  ]
 };
 
 const MapWrapper = withGoogleMap(props => (
@@ -59,7 +85,6 @@ const renderArtifacts = (artifacts, filter, onArtifactClick) =>
  * @param props
  */
 const Map = ({ artifactTypes, classes, onArtifactClick }) => (
-  // <div className={classes.map} />
   <MapWrapper
     containerElement={<div className={classes.map} />}
     mapElement={<div className={classes.mapElement} />}

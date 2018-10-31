@@ -22,6 +22,9 @@ const styles = theme => ({
   },
   progress: {
     marginBottom: theme.spacing.unit
+  },
+  actions: {
+    float: 'right'
   }
 });
 
@@ -55,7 +58,7 @@ const ArtifactCard = ({ artifact, classes, onClick }) => (
         </Typography>
       </CardContent>
     </CardActionArea>
-    <CardActions>
+    <CardActions className={classes.actions}>
       <Button size="small" color="primary">
         Share
       </Button>

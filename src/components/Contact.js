@@ -3,7 +3,8 @@ import Page from './Page';
 
 import { object } from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { Typography } from '@material-ui/core';
+import { Typography, Grid } from '@material-ui/core';
+import Insta from './Insta';
 
 const styles = _ => {};
 
@@ -23,8 +24,11 @@ const Contact = _ => (
       Like Us on Facebook: <a href="https://www.facebook.com/preservenice/">Facebook</a>
       {/**TODO add real link to facebook and email! */}
     </Typography>
-    <Typography variant="title">
+    <Typography paragraph variant="title">
       Email us: <a href="ve18.pv@gmail.com">ve18.pv@gmail.com</a>
+    </Typography>
+    <Typography paragraph variant="display2" align="center">
+      Instafeed
     </Typography>
   </Page>
 );

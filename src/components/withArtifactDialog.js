@@ -12,6 +12,7 @@ class ArtifactDialogWrapper extends React.Component {
    * activated.
    * @param {object} artifact the artifact to display
    */
+
   onArtifactClick = artifact => () =>
     this.setState({
       ...this.state,

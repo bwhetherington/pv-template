@@ -27,14 +27,14 @@ const Home = ({ classes, onArtifactClick }) => (
       PreserVenice
     </Typography>
     <Typography variant="subheading" align="center">
-      Subtitle
+      A Crowdfunding Solution to Preserving Venetian Heritage
     </Typography>
     <Separator />
     <Typography paragraph>
       PreserVenice is a non-profit organization devoted to the preservation and restoration of
-      public art in Venice, Italy. Please help us preserve this inestimable collection by using our
-      App to collect up-to-date information about the artifacts and to donate funds for their
-      restoration.
+      public art in Venice, Italy. Please help us preserve this precious collection of heritage by
+      using our website to collect up-to-date information about the artifacts and to donate funds
+      for their restoration.
     </Typography>
     <Typography variant="headline" align="center">
       Artifacts in Need

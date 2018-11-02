@@ -63,34 +63,32 @@ const MapWrapper = withGoogleMap(props => (
   <GoogleMap defaultCenter={center} defaultZoom={zoom} {...props} />
 ));
 
-const renderArtifacts = (artifacts, filter, onArtifactClick) =>
-  artifacts
-    .filter(({ type }) => filter.indexOf(type) >= 0) // TODO make this filter not slow
-    .map(artifact => {
-      const { name, namePretty, position } = artifact;
-      return (
-        <Marker
-          id={name}
-          key={name}
-          title={namePretty}
-          position={position}
-          onClick={onArtifactClick(artifact)}
-        />
-      );
-    });
+const renderArtifacts = (artifacts, onArtifactClick) =>
+  artifacts.map(artifact => {
+    const { name, namePretty, position } = artifact;
+    return (
+      <Marker
+        id={name}
+        key={name}
+        title={namePretty}
+        position={position}
+        onClick={onArtifactClick(artifact)}
+      />
+    );
+  });
 
 /**
  * A dummy map component.
  * Google Maps API Key: <API KEY>
  * @param props
  */
-const Map = ({ artifactTypes, classes, onArtifactClick }) => (
+const Map = ({ artifactTypes, classes, onArtifactClick, artifacts = [] }) => (
   <MapWrapper
     containerElement={<div className={classes.map} />}
     mapElement={<div className={classes.mapElement} />}
     options={options}
   >
-    {renderArtifacts(sampleArtifacts, artifactTypes, onArtifactClick)}
+    {renderArtifacts(artifacts, onArtifactClick)}
   </MapWrapper>
 );
 

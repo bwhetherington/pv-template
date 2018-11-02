@@ -17,6 +17,7 @@ import {
   Checkbox
 } from '@material-ui/core';
 import { take, createMap, sampleArtifacts, artifactTypes, priorityArtifactsSample } from '../util';
+import { queryFilter } from '../data';
 
 const styles = theme => ({
   mapControls: {
@@ -58,14 +59,14 @@ const drawerWidth = 240;
 class ArtifactPage extends React.Component {
   state = {
     filter: createMap(artifactTypes, _ => false),
-    showFilters: false
+    showFilters: false,
+    artifacts: []
   };
 
   /**
    * Shows the filter drawer.
    */
   showDrawer = () => {
-    console.log('Showing drawer?');
     this.setState({
       ...this.state,
       showFilters: true
@@ -84,18 +85,12 @@ class ArtifactPage extends React.Component {
 
   showAllArtifacts = () => {
     const filter = createMap(artifactTypes, _ => true);
-    this.setState({
-      ...this.state,
-      filter
-    });
+    this.queryArtifacts(filter);
   };
 
   hideAllArtifacts = () => {
     const filter = createMap(artifactTypes, _ => false);
-    this.setState({
-      ...this.state,
-      filter
-    });
+    this.queryArtifacts(filter);
   };
 
   /**
@@ -109,19 +104,30 @@ class ArtifactPage extends React.Component {
         ...filter,
         [type]: !filter[type]
       };
-      this.setState({
-        ...this.state,
-        filter: newFilter
-      });
+      this.queryArtifacts(newFilter);
     };
   }
 
   /**
    * Produces a list containing the artifact types that have been selected to be filtered.
    */
-  filteredTypes() {
-    const { filter } = this.state;
+  filteredTypes(filter) {
     return Object.keys(filter).filter(key => filter[key]);
+  }
+
+  queryArtifacts(filter) {
+    const list = this.filteredTypes(filter);
+    queryFilter(list, filtered => {
+      const artifacts = [];
+      for (const artifact of filtered) {
+        artifacts.push(artifact);
+      }
+      this.setState({
+        ...this.state,
+        filter,
+        artifacts
+      });
+    });
   }
 
   /**
@@ -129,7 +135,9 @@ class ArtifactPage extends React.Component {
    */
   render() {
     const { classes, onArtifactClick } = this.props;
-    const { showFilters, showArtifact, currentArtifact } = this.state;
+    const { showFilters } = this.state;
+
+    console.log(onArtifactClick);
 
     // The drawer containing the filter options
     const filterDrawer = (
@@ -172,7 +180,7 @@ class ArtifactPage extends React.Component {
       <Page selected="artifacts" fullScreen={true}>
         {filterDrawer}
         <div className={classes.content}>
-          <Map artifactTypes={this.filteredTypes()} onArtifactClick={onArtifactClick} />
+          <Map onArtifactClick={onArtifactClick} artifacts={this.state.artifacts} />
         </div>
       </Page>
     );

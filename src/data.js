@@ -79,8 +79,8 @@ export const queryGroups = async (groups, f) => {
  * Filters the group names according to artifact types.
  * @param {array} filter
  */
-export const filterGroups = filter =>
-  groups.filter(group => {
+export function filterGroups(filter) {
+  return groups.filter(group => {
     for (const filterElement of filter) {
       if (group.endsWith(filterElement)) {
         return true;
@@ -88,8 +88,11 @@ export const filterGroups = filter =>
     }
     return false;
   });
+}
 
-export const queryFilter = (filter, f) => queryGroups(filterGroups(filter), f);
+export function queryFilter(filter, f) {
+  return queryGroups(filterGroups(filter), f);
+}
 
 // const artifact = {
 //   name,
@@ -101,7 +104,7 @@ export const queryFilter = (filter, f) => queryGroups(filterGroups(filter), f);
 //   position: randomCoords()
 // };
 
-export const convertArtifact = artifact => {
+export function convertArtifact(artifact) {
   const name = artifact.ck_id;
   const type = artifact.content.type;
   const namePretty = artifact.content.wiki_friendly_title;
@@ -121,4 +124,4 @@ export const convertArtifact = artifact => {
     amountNeeded,
     position
   };
-};
+}

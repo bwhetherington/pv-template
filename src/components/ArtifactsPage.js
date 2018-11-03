@@ -19,40 +19,42 @@ import {
 import { take, createMap, sampleArtifacts, artifactTypes, priorityArtifactsSample } from '../util';
 import { queryFilter } from '../data';
 
-const styles = theme => ({
-  mapControls: {
-    padding: theme.spacing.unit
-  },
-  mapControlButton: {
-    marginRight: theme.spacing.unit
-  },
-  filter: {
-    width: '100%',
-    height: '100%'
-  },
-  filterTitle: {
-    padding: theme.spacing.unit,
-    marginTop: theme.spacing.unit * 7
-    // background: theme.palette.background.paper
-  },
-  filterButton: {
-    width: '100%'
-  },
-  filterOptions: {
-    overflowY: 'scroll'
-    // background: theme.palette.background.default
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0
-  },
-  content: {
-    marginLeft: drawerWidth,
-    height: '100%',
-    background: 'black',
-    overflowY: 'hidden'
-  }
-});
+function styles(theme) {
+  return {
+    mapControls: {
+      padding: theme.spacing.unit
+    },
+    mapControlButton: {
+      marginRight: theme.spacing.unit
+    },
+    filter: {
+      width: '100%',
+      height: '100%'
+    },
+    filterTitle: {
+      padding: theme.spacing.unit,
+      marginTop: theme.spacing.unit * 7
+      // background: theme.palette.background.paper
+    },
+    filterButton: {
+      width: '100%'
+    },
+    filterOptions: {
+      overflowY: 'scroll'
+      // background: theme.palette.background.default
+    },
+    drawer: {
+      width: drawerWidth,
+      flexShrink: 0
+    },
+    content: {
+      marginLeft: drawerWidth,
+      height: '100%',
+      background: 'black',
+      overflowY: 'hidden'
+    }
+  };
+}
 
 const drawerWidth = 240;
 

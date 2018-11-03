@@ -23,38 +23,43 @@ const artifacts = [
   }
 ];
 
-const styles = theme => ({
-  root: {
-    width: '100%',
-    marginTop: theme.spacing.unit * 3,
-    overflowX: 'auto'
-  },
-  table: {}
-});
+function styles(theme) {
+  return {
+    root: {
+      width: '100%',
+      marginTop: theme.spacing.unit * 3,
+      overflowX: 'auto'
+    },
+    table: {}
+  };
+}
 
 /**
  * This component renders the PreserVenice website's artifact table page.
  */
-const ArtifactList = ({ classes }) => (
-  <Page selected="artifacts">
-    <Paper className={classes.root}>
-      <Table className={classes.table}>
-        <TableHead>
-          <TableRow>
-            <TableCell>Artifact</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {artifacts.map(({ name }) => (
-            <TableRow key={name}>
-              <TableCell onClick={event => console.log(`Clicked ${name}`)}>{name}</TableCell>
+function ArtifactList(props) {
+  const { classes } = props;
+  return (
+    <Page selected="artifacts">
+      <Paper className={classes.root}>
+        <Table className={classes.table}>
+          <TableHead>
+            <TableRow>
+              <TableCell>Artifact</TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </Paper>
-  </Page>
-);
+          </TableHead>
+          <TableBody>
+            {artifacts.map(({ name }) => (
+              <TableRow key={name}>
+                <TableCell onClick={event => console.log(`Clicked ${name}`)}>{name}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </Paper>
+    </Page>
+  );
+}
 
 ArtifactList.propTypes = {
   classes: object.isRequired

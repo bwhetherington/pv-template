@@ -6,7 +6,7 @@ import { theme } from './theme';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-const main = () => {
+function main() {
   ReactDOM.render(
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
@@ -14,6 +14,6 @@ const main = () => {
     </MuiThemeProvider>,
     document.getElementById('app')
   );
-};
+}
 
 main();

@@ -5,44 +5,47 @@ import { object, string } from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 
-const styles = theme => ({
-  rootFullScreen: {
-    height: '100%',
-    maxWidth: '100%',
-    overflowY: 'hidden'
-  },
-  root: {
-    height: '100%',
-    maxWidth: '100%'
-  },
-  fullScreen: {
-    width: '100%',
-    height: '100%',
-    overflowY: 'hidden'
-  },
-  content: {
-    maxWidth: 1000,
-    paddingLeft: theme.spacing.unit * 3,
-    paddingRight: theme.spacing.unit * 3,
-    margin: 'auto',
-    fontFamily: 'Roboto',
-    paddingTop: theme.spacing.unit * 2,
-    paddingBottom: theme.spacing.unit * 2
-  },
-  appBar: {
-    position: 'relative'
-  },
-  toolbarTitle: {
-    flex: '1'
-  },
-  footer: {
-    backgroundColor: theme.palette.background.paper,
-    marginTop: theme.spacing.unit * 8,
-    padding: theme.spacing.unit * 6
-  }
-});
+function styles(theme) {
+  return {
+    rootFullScreen: {
+      height: '100%',
+      maxWidth: '100%',
+      overflowY: 'hidden'
+    },
+    root: {
+      height: '100%',
+      maxWidth: '100%'
+    },
+    fullScreen: {
+      width: '100%',
+      height: '100%',
+      overflowY: 'hidden'
+    },
+    content: {
+      maxWidth: 1000,
+      paddingLeft: theme.spacing.unit * 3,
+      paddingRight: theme.spacing.unit * 3,
+      margin: 'auto',
+      fontFamily: 'Roboto',
+      paddingTop: theme.spacing.unit * 2,
+      paddingBottom: theme.spacing.unit * 2
+    },
+    appBar: {
+      position: 'relative'
+    },
+    toolbarTitle: {
+      flex: '1'
+    },
+    footer: {
+      backgroundColor: theme.palette.background.paper,
+      marginTop: theme.spacing.unit * 8,
+      padding: theme.spacing.unit * 6
+    }
+  };
+}
 
-const Page = ({ classes, children, selected, fullScreen = false }) => {
+function Page(props) {
+  const { classes, children, selected, fullScreen = false } = props;
   if (fullScreen) {
     return (
       <div className={classes.rootFullScreen}>
@@ -63,7 +66,7 @@ const Page = ({ classes, children, selected, fullScreen = false }) => {
       </div>
     );
   }
-};
+}
 
 Page.propTypes = {
   classes: object.isRequired,

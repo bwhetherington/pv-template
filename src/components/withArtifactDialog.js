@@ -58,8 +58,8 @@ class ArtifactDialogWrapper extends React.Component {
  * displays an artifact dialog when the child's `onArtifactClick` handler is called.
  * @param component the component to wrap
  */
-const withArtifactDialog = component => props => (
-  <ArtifactDialogWrapper Container={component} componentProps={props} />
-);
+function withArtifactDialog(component) {
+  return props => <ArtifactDialogWrapper Container={component} componentProps={props} />;
+}
 
 export default withArtifactDialog;

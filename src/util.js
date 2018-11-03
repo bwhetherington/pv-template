@@ -4,7 +4,7 @@
  * @param {number} n the number of elements to take
  * @param {array} xs the list to take from
  */
-export const take = (n, xs) => {
+export function take(n, xs) {
   if (n > xs.length) {
     return xs;
   }
@@ -13,7 +13,7 @@ export const take = (n, xs) => {
     taken.push(xs[i]);
   }
   return taken;
-};
+}
 
 /**
  * Creates an object with the specified keys each pointing to a value created by passing the key
@@ -21,7 +21,9 @@ export const take = (n, xs) => {
  * @param {array} keys the list of keys
  * @param {func} f the transformation function
  */
-export const createMap = (keys, f) => Object.assign(...keys.map(key => ({ [key]: f(key) })));
+export function createMap(keys, f) {
+  return Object.assign(...keys.map(key => ({ [key]: f(key) })));
+}
 
 const venice = {
   lat: 45.44,
@@ -36,7 +38,7 @@ const venice = {
  * @param {object} center the center
  * @param {number} variance the variance
  */
-const randomCoords = (center = venice, variance = 0.01) => {
+function randomCoords(center = venice, variance = 0.01) {
   const latOffset = (Math.random() - 0.5) * variance * 2;
   const lngOffset = (Math.random() - 0.5) * variance * 2;
 
@@ -44,7 +46,7 @@ const randomCoords = (center = venice, variance = 0.01) => {
     lat: center.lat + latOffset,
     lng: center.lng + lngOffset
   };
-};
+}
 
 /**
  * Represents all of the available artifact types.
@@ -69,7 +71,7 @@ export const artifactTypes = [
  * Produces a list of randomly generated artifacts.
  * @param {number} artifactCount the number of artifacts to generate
  */
-const generateArtifact = artifactCount => {
+function generateArtifact(artifactCount) {
   const name = `artifact${artifactCount}`;
 
   const typeId = Math.trunc(Math.random() * artifactTypes.length);
@@ -91,14 +93,14 @@ const generateArtifact = artifactCount => {
   };
 
   return artifact;
-};
+}
 
 const numberToGenerate = 200;
 
 /**
  * Produces a sample of randomly-generated artifacts.
  */
-const generateSampleArtifacts = () => {
+function generateSampleArtifacts() {
   let artifactCount = 0;
   const artifacts = [];
   for (let i = 0; i < numberToGenerate; i++) {
@@ -107,22 +109,26 @@ const generateSampleArtifacts = () => {
     artifacts.push(artifact);
   }
   return artifacts;
-};
+}
 
 /**
  * Produces an estimate of the priority of the specified artifact.
  * @param {object} artifact the artifact
  */
-export const estimatePriority = ({ amountDonated, amountNeeded }) => amountDonated / amountNeeded;
+export function estimatePriority({ amountDonated, amountNeeded }) {
+  return amountDonated / amountNeeded;
+}
 
 /**
  * Produces a view of the specified artifact, containing all necessary fields to be rendered.
  * @param {object} artifact the artifact to view
  */
-export const viewArtifact = artifact => ({
-  ...artifact,
-  priority: estimatePriority(artifact)
-});
+export function viewArtifact(artifact) {
+  return {
+    ...artifact,
+    priority: estimatePriority(artifact)
+  };
+}
 
 export const sampleArtifacts = generateSampleArtifacts().map(viewArtifact);
 

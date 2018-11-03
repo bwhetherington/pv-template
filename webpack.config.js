@@ -20,14 +20,14 @@ module.exports = {
     extensions: ['*', '.js', '.jsx']
   },
   output: {
-    path: __dirname + '/dist',
+    path: __dirname + '/static',
     publicPath: '/',
     filename: 'bundle.js'
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-      template: 'dist/index.html'
+      template: 'static/index.html'
     })
   ],
   devServer: {

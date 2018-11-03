@@ -5,7 +5,7 @@ import '@babel/polyfill';
 //   `http://ckdata2.herokuapp.com/api/v1/dataset.json?group_name=${groupName}`;
 
 // TODO Remove this when the actual database is working
-const queryUrl = groupName => `/dist/json/${groupName}.json`;
+const queryUrl = groupName => `/static/json/${groupName}.json`;
 
 const groups = [
   'PV DATA Feb 2013 KM Erratic Sculpture Coats of Arms',

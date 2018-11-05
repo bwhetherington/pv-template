@@ -1,10 +1,12 @@
 import React from 'react';
 import Page from './Page';
+import Instafeed from 'react-instafeed';
 
 import { object } from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { Typography, Grid } from '@material-ui/core';
-import Insta from './Insta';
+
+const instafeedTarget = 'instafeed';
 
 const styles = _ => {};
 
@@ -26,9 +28,6 @@ const Contact = _ => (
     </Typography>
     <Typography paragraph variant="title">
       Email us: <a href="ve18.pv@gmail.com">ve18.pv@gmail.com</a>
-    </Typography>
-    <Typography paragraph variant="display2" align="center">
-      Instafeed
     </Typography>
   </Page>
 );

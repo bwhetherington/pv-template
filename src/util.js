@@ -4,15 +4,15 @@
  * @param {number} n the number of elements to take
  * @param {array} xs the list to take from
  */
-export function take(n, xs) {
-  if (n > xs.length) {
-    return xs;
+export function* take(n, xs) {
+  let i = 0;
+  for (const x of xs) {
+    i++;
+    if (i >= n) {
+      break;
+    }
+    yield x;
   }
-  const taken = [];
-  for (let i = 0; i < n; i++) {
-    taken.push(xs[i]);
-  }
-  return taken;
 }
 
 /**
@@ -86,7 +86,7 @@ function generateArtifact(artifactCount) {
     name,
     type,
     namePretty,
-    coverImage: 'dist/default-img.png',
+    coverImage: 'static/default-img.png',
     amountDonated,
     amountNeeded,
     position: randomCoords()

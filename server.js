@@ -10,7 +10,7 @@ app.get(`/${DIR}/*`, (req, res) => {
   res.sendFile(file);
 });
 
-// Redirect all routes to dist/index.html and then allow react-router to handle it
+// Redirect all routes to static/index.html and then allow react-router to handle it
 app.get('*', (req, res) => {
   const index = path.resolve(__dirname, DIR, 'index.html');
   res.sendFile(index);

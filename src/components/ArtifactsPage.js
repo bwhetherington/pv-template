@@ -16,8 +16,9 @@ import {
   ListItemText,
   Checkbox
 } from '@material-ui/core';
-import { take, createMap, sampleArtifacts, artifactTypes, priorityArtifactsSample } from '../util';
-import { queryFilter } from '../data';
+import { createMap, artifactTypes } from '../util';
+import { queryGroupsAsync, filterGroups } from '../data';
+import { asyncIterator } from 'lazy-iters';
 
 function styles(theme) {
   return {
@@ -117,18 +118,15 @@ class ArtifactPage extends React.Component {
     return Object.keys(filter).filter(key => filter[key]);
   }
 
-  queryArtifacts(filter) {
+  async queryArtifacts(filter) {
     const list = this.filteredTypes(filter);
-    queryFilter(list, filtered => {
-      const artifacts = [];
-      for (const artifact of filtered) {
-        artifacts.push(artifact);
-      }
-      this.setState({
-        ...this.state,
-        filter,
-        artifacts
-      });
+    const groups = filterGroups(list);
+    const query = asyncIterator(queryGroupsAsync(groups));
+    const artifacts = await query.collect();
+    this.setState({
+      ...this.state,
+      filter,
+      artifacts
     });
   }
 

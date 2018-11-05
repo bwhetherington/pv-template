@@ -26,6 +26,9 @@ function styles(theme) {
     },
     actions: {
       float: 'right'
+    },
+    description: {
+      height: 100
     }
   };
 }
@@ -47,10 +50,8 @@ function ArtifactCard(props) {
           <Typography gutterBottom variant="subheading" component="h2">
             {artifact.namePretty}
           </Typography>
-          <Typography paragraph>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam et sodales arcu. Curabitur
-            eleifend sagittis pretium. Suspendisse scelerisque arcu at arcu interdum, eget posuere
-            justo ornare.
+          <Typography paragraph className={classes.description}>
+            {artifact.description}
           </Typography>
           <LinearProgress
             className={classes.progress}

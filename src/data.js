@@ -1,4 +1,5 @@
 import '@babel/polyfill';
+import { iterator } from 'lazy-iters';
 
 // TODO Uncomment this when the actual database is working
 // const queryUrl = groupName =>
@@ -18,7 +19,10 @@ const groups = [
   'PV DATA Feb 2013 KM Erratic Sculpture Reliefs',
   'PV DATA Feb 2013 KM Erratic Sculpture Sculptures',
   'PV DATA Feb 2013 KM Erratic Sculpture Street Altars',
-  'PV DATA Feb 2013 KM Erratic Sculpture Symbols'
+  'PV DATA Feb 2013 KM Erratic Sculpture Symbols',
+  // 'PV DATA 2014 KM Newly Documented Fountains',
+  'PV FINAL DATA 2014 KM Fountains',
+  'PV DATA Apr 2013 KM Flagstaff Pedestals'
 ];
 
 const options = {
@@ -54,51 +58,30 @@ const options = {
 //   };
 // };
 
-function* flatten(arrays) {
-  for (const array of arrays) {
-    for (const element of array) {
-      yield element;
+export async function* queryGroupsAsync(types = groups) {
+  for (const group of types) {
+    try {
+      const response = await fetch(queryUrl(group));
+      const data = await response.json();
+      yield* data.map(convertArtifact);
+    } catch (ex) {
+      console.log(ex);
     }
   }
 }
 
-export const queryGroups = async (groups, f) => {
-  const dataGroups = [];
-
-  for (const group of groups) {
-    const response = await fetch(queryUrl(group));
-    const data = await response.json();
-    dataGroups.push(data.map(convertArtifact));
-  }
-
-  // const flattened = flatten(dataGroups);
-  f(flatten(dataGroups));
-};
-
-/**
- * Filters the group names according to artifact types.
- * @param {array} filter
- */
-export function filterGroups(filter) {
-  return groups.filter(group => {
-    for (const filterElement of filter) {
-      if (group.endsWith(filterElement)) {
-        return true;
-      }
-    }
-    return false;
-  });
-}
-
-export function queryFilter(filter, f) {
-  return queryGroups(filterGroups(filter), f);
+export function filterGroups(types) {
+  const typesIter = iterator(types);
+  return iterator(groups)
+    .filter(group => typesIter.any(type => group.endsWith(type)))
+    .collect();
 }
 
 // const artifact = {
 //   name,
 //   type,
 //   namePretty,
-//   coverImage: 'dist/default-img.png',
+//   coverImage: 'static/default-img.png',
 //   amountDonated,
 //   amountNeeded,
 //   position: randomCoords()
@@ -122,6 +105,7 @@ export function convertArtifact(artifact) {
     type,
     amountDonated,
     amountNeeded,
-    position
+    position,
+    description: artifact.content.description_italian
   };
 }

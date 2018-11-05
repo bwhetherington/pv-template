@@ -16,10 +16,11 @@ import { object } from 'prop-types';
 function styles(theme) {
   return {
     card: {
-      // maxWidth: 345
+      width: '100%'
     },
     media: {
-      objectFit: 'cover'
+      objectFit: 'cover',
+      width: '100%'
     },
     progress: {
       marginBottom: theme.spacing.unit
@@ -28,7 +29,8 @@ function styles(theme) {
       float: 'right'
     },
     description: {
-      height: 100
+      height: 100,
+      overflowY: 'scroll'
     }
   };
 }

@@ -87,11 +87,43 @@ export function filterGroups(types) {
 //   position: randomCoords()
 // };
 
+function isVowel(c) {
+  const char = c.toLowerCase();
+  return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u';
+}
+
+function article(name) {
+  return isVowel(name[0]) ? 'An' : 'A';
+}
+
+function formatAddress(address) {
+  const sestiere = address.substring(0, 2).toLowerCase();
+  const num = address.substring(2);
+  return `${sestiere}' ${num}`;
+}
+
+function makeDescription(artifact) {
+  const { type, subtype, sestiere, approximate_year, material, street_address } = artifact.content;
+  const year = approximate_year;
+  const isUnknown = year.localeCompare('unknown') == 0;
+  if (year !== null && year !== undefined && !isUnknown) {
+    return `${article(
+      subtype
+    )} ${subtype.toLowerCase()} in ${sestiere} from ${approximate_year}, made out of ${material}. This artifact can be found at ${street_address}.`;
+  } else {
+    return `${article(
+      subtype
+    )} ${subtype.toLowerCase()} in ${sestiere}, made out of ${material}. This artifact can be found at ${formatAddress(
+      street_address
+    )}.`;
+  }
+}
+
 export function convertArtifact(artifact) {
   const name = artifact.ck_id;
   const type = artifact.content.type;
   const namePretty = artifact.content.wiki_friendly_title;
-  const coverImage = artifact.content.image_url;
+  const coverImage = artifact.content.photo_filename;
   const amountDonated = 0;
   const amountNeeded = 0;
   const position = {
@@ -106,6 +138,6 @@ export function convertArtifact(artifact) {
     amountDonated,
     amountNeeded,
     position,
-    description: artifact.content.description_italian
+    description: makeDescription(artifact)
   };
 }

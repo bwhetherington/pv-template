@@ -11,16 +11,18 @@ import { sampleArtifacts, windowHeight } from '../util';
 const headerSize = 48;
 const height = `calc(100% - ${headerSize}px)`;
 
-const styles = theme => ({
-  map: {
-    width: '100%',
-    height,
-    background: 'black'
-  },
-  mapElement: {
-    height: '100%'
-  }
-});
+function styles(theme) {
+  return {
+    map: {
+      width: '100%',
+      height,
+      background: 'black'
+    },
+    mapElement: {
+      height: '100%'
+    }
+  };
+}
 
 const center = {
   lat: 45.44,
@@ -63,36 +65,38 @@ const MapWrapper = withGoogleMap(props => (
   <GoogleMap defaultCenter={center} defaultZoom={zoom} {...props} />
 ));
 
-const renderArtifacts = (artifacts, filter, onArtifactClick) =>
-  artifacts
-    .filter(({ type }) => filter.indexOf(type) >= 0) // TODO make this filter not slow
-    .map(artifact => {
-      const { name, namePretty, position } = artifact;
-      return (
-        <Marker
-          id={name}
-          key={name}
-          title={namePretty}
-          position={position}
-          onClick={onArtifactClick(artifact)}
-        />
-      );
-    });
+function renderArtifacts(artifacts, onArtifactClick) {
+  return artifacts.map(artifact => {
+    const { name, namePretty, position } = artifact;
+    return (
+      <Marker
+        id={name}
+        key={name}
+        title={namePretty}
+        position={position}
+        onClick={onArtifactClick(artifact)}
+      />
+    );
+  });
+}
 
 /**
  * A dummy map component.
  * Google Maps API Key: <API KEY>
  * @param props
  */
-const Map = ({ artifactTypes, classes, onArtifactClick }) => (
-  <MapWrapper
-    containerElement={<div className={classes.map} />}
-    mapElement={<div className={classes.mapElement} />}
-    options={options}
-  >
-    {renderArtifacts(sampleArtifacts, artifactTypes, onArtifactClick)}
-  </MapWrapper>
-);
+function Map(props) {
+  const { classes, onArtifactClick, artifacts = [] } = props;
+  return (
+    <MapWrapper
+      containerElement={<div className={classes.map} />}
+      mapElement={<div className={classes.mapElement} />}
+      options={options}
+    >
+      {renderArtifacts(artifacts, onArtifactClick)}
+    </MapWrapper>
+  );
+}
 
 Map.propTypes = {
   classes: object.isRequired

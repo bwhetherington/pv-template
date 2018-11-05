@@ -15,20 +15,23 @@ import {
 } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 
-const styles = _ => ({
-  description: {
-    // minWidth: '600px'
-  },
-  close: {
-    float: 'right'
-  }
-});
+function styles(_) {
+  return {
+    description: {
+      // minWidth: '600px'
+    },
+    close: {
+      float: 'right'
+    }
+  };
+}
 
 /**
  * This component renders a page for the artifact with the specified artifact ID.
  * @param {object} props
  */
-const Artifact = ({ fullScreen, open, onClose, artifact, classes }) => {
+function Artifact(props) {
+  const { fullScreen, open, onClose, artifact, classes } = props;
   const { namePretty } = artifact;
   return (
     <Dialog fullScreen={fullScreen} open={open} onClose={onClose}>
@@ -56,7 +59,7 @@ const Artifact = ({ fullScreen, open, onClose, artifact, classes }) => {
       </DialogActions>
     </Dialog>
   );
-};
+}
 
 Artifact.propTypes = {
   classes: object.isRequired,

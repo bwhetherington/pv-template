@@ -4,56 +4,93 @@ import Separator from './Separator';
 import ArtifactCard from './ArtifactCard';
 import withArtifactDialog from './withArtifactDialog';
 import { Typography, Grid } from '@material-ui/core';
-import { priorityArtifactsSample } from '../util';
 import { object, func } from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import { convertArtifact } from '../data';
+import { asyncIterator } from 'lazy-iters';
 
-const styles = theme => ({
-  cards: {
-    padding: theme.spacing.unit * 3,
-    flexWrap: 'nowrap',
-    // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
-    transform: 'translateZ(0)',
-    height: '100%'
-  },
-  card: {
-    padding: theme.spacing.unit
+function styles(theme) {
+  return {
+    cards: {
+      padding: theme.spacing.unit * 3,
+      flexWrap: 'nowrap',
+      // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
+      transform: 'translateZ(0)',
+      height: '100%'
+    },
+    card: {
+      padding: theme.spacing.unit
+    }
+  };
+}
+
+async function* querySample() {
+  try {
+    const res = await fetch('http://localhost:8888/sample');
+    const data = await res.json();
+    yield* data;
+  } catch (ex) {
+    console.log(ex);
   }
-});
+}
 
-const Home = ({ classes, onArtifactClick }) => (
-  <Page selected="home">
-    <Typography variant="headline" align="center">
-      PreserVenice
-    </Typography>
-    <Typography variant="subheading" align="center">
-      A Crowdfunding Solution to Preserving Venetian Heritage
-    </Typography>
-    <Separator />
-    <Typography paragraph>
-      PreserVenice is a non-profit organization devoted to the preservation and restoration of
-      public art in Venice, Italy. Please help us preserve this precious collection of heritage by
-      using our website to collect up-to-date information about the artifacts and to donate funds
-      for their restoration.
-    </Typography>
-    <Typography variant="headline" align="center">
-      Artifacts in Need
-    </Typography>
-    <Separator />
-    <Typography paragraph>These artifacts are nearly at their funding goals.</Typography>
-    <Grid container spacing={16} className={classes.cards}>
-      {priorityArtifactsSample.map(artifact => (
-        <Grid item key={artifact.name} xs={4}>
-          <ArtifactCard
-            artifact={artifact}
-            className={classes.card}
-            onClick={onArtifactClick(artifact)}
-          />
+class Home extends React.Component {
+  state = {
+    artifactSample: []
+  };
+
+  componentDidMount() {
+    this.loadArtifactSample();
+  }
+
+  async loadArtifactSample() {
+    const sampleQuery = asyncIterator(querySample());
+    const artifactSample = await sampleQuery.map(convertArtifact).collect();
+
+    this.setState({
+      ...this.state,
+      artifactSample
+    });
+  }
+
+  render() {
+    const { classes, onArtifactClick } = this.props;
+    const { artifactSample } = this.state;
+    return (
+      <Page selected="home">
+        <Typography variant="headline" align="center">
+          PreserVenice
+        </Typography>
+        <Typography variant="subheading" align="center">
+          A Crowdfunding Solution to Preserving Venetian Heritage
+        </Typography>
+        <Separator />
+        <Typography paragraph>
+          PreserVenice is a non-profit organization devoted to the preservation and restoration of
+          public art in Venice, Italy. Please help us preserve this precious collection of heritage
+          by using our website to collect up-to-date information about the artifacts and to donate
+          funds for their restoration.
+        </Typography>
+        <Typography variant="headline" align="center">
+          Artifacts in Need
+        </Typography>
+        <Separator />
+        <Typography paragraph>These artifacts are nearly at their funding goals.</Typography>
+        <Grid container spacing={16} className={classes.cards}>
+          {artifactSample.map(artifact => (
+            <Grid item key={artifact.name} xs={4}>
+              <ArtifactCard
+                artifact={artifact}
+                className={classes.card}
+                onClick={onArtifactClick(artifact)}
+              />
+            </Grid>
+          ))}
         </Grid>
-      ))}
-    </Grid>
-  </Page>
-);
+      </Page>
+    );
+  }
+}
 
 Home.propTypes = {
   classes: object.isRequired,

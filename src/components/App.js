@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import About from './About';
 import Artifact from './Artifact';
-import ArtifactList from './ArtifactList';
 import Contact from './Contact';
 import ArtifactsPage from './ArtifactsPage';
 import Home from './Home';
@@ -13,34 +12,42 @@ import NotFound from './NotFound';
  * information provided.
  * @param {object} props
  */
-const ArtifactWrapper = props => <Artifact artifactId={props.match.params.artifactId} />;
+function ArtifactWrapper(props) {
+  return <Artifact artifactId={props.match.params.artifactId} />;
+}
 
 /**
  * A dummy artifacts router.
  */
-const Artifacts = _ => (
-  <Switch>
-    <Route exact path="/artifacts" component={ArtifactsPage} />
-    <Route path="/artifacts/:artifactId" component={ArtifactWrapper} />
-  </Switch>
-);
+function Artifacts(_) {
+  return (
+    <Switch>
+      <Route exact path="/artifacts" component={ArtifactsPage} />
+      <Route path="/artifacts/:artifactId" component={ArtifactWrapper} />
+    </Switch>
+  );
+}
 
-const HomeRedirect = _ => <Redirect to="/home" />;
+function HomeRedirect(_) {
+  return <Redirect to="/home" />;
+}
 
 /**
  * This component handles routing to specific pages.
  */
-const App = _ => (
-  <Router>
-    <Switch>
-      <Route exact path="/" component={HomeRedirect} />
-      <Route exact path="/home" component={Home} />
-      <Route exact path="/about" component={About} />
-      <Route exact path="/contact" component={Contact} />
-      <Route path="/artifacts" component={Artifacts} />
-      <Route path="*" component={NotFound} />
-    </Switch>
-  </Router>
-);
+function App(_) {
+  return (
+    <Router>
+      <Switch>
+        <Route exact path="/" component={HomeRedirect} />
+        <Route exact path="/home" component={Home} />
+        <Route exact path="/about" component={About} />
+        <Route exact path="/contact" component={Contact} />
+        <Route path="/artifacts" component={Artifacts} />
+        <Route path="*" component={NotFound} />
+      </Switch>
+    </Router>
+  );
+}
 
 export default App;

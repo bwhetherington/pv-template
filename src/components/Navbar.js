@@ -5,24 +5,28 @@ import { withStyles } from '@material-ui/core/styles';
 import { object, string } from 'prop-types';
 import { AppBar, Toolbar, Typography } from '@material-ui/core';
 
-const styles = theme => ({
-  appBar: {
-    // position: 'relative',
-    zIndex: theme.zIndex.drawer + 1
-    // flex: '0'
-  },
-  toolbarTitle: {
-    flex: '1'
-  }
-});
+function styles(theme) {
+  return {
+    appBar: {
+      // position: 'relative',
+      zIndex: theme.zIndex.drawer + 1
+      // flex: '0'
+    },
+    toolbarTitle: {
+      flex: '1'
+    }
+  };
+}
 
 /**
  * Creates a click handler that navigates to the specified URL.
  * @param {string} href The specified URL
  */
-const onClick = href => () => {
-  location.href = href;
-};
+function onClick(href) {
+  return () => {
+    location.href = href;
+  };
+}
 
 const links = {
   home: {
@@ -48,23 +52,27 @@ const links = {
  * @param {string} selected The currently selected page
  * @param {object} links An object mapping urls to page names
  */
-const renderLinks = (selected, links) =>
-  Object.keys(links).map(key => (
+function renderLinks(selected, links) {
+  return Object.keys(links).map(key => (
     <NavButton key={key} selected={key === selected} onClick={links[key].handler}>
       {links[key].name}
     </NavButton>
   ));
+}
 
-const Navbar = ({ classes, selected, position = 'sticky' }) => (
-  <AppBar position={position} className={classes.appBar}>
-    <Toolbar variant="dense">
-      <Typography variant="title" color="inherit" noWrap className={classes.toolbarTitle}>
-        PreserVenice
-      </Typography>
-      {renderLinks(selected, links)}
-    </Toolbar>
-  </AppBar>
-);
+function Navbar(props) {
+  const { classes, selected, position = 'sticky' } = props;
+  return (
+    <AppBar position={position} className={classes.appBar}>
+      <Toolbar variant="dense">
+        <Typography variant="title" color="inherit" noWrap className={classes.toolbarTitle}>
+          PreserVenice
+        </Typography>
+        {renderLinks(selected, links)}
+      </Toolbar>
+    </AppBar>
+  );
+}
 
 Navbar.propTypes = {
   classes: object.isRequired,

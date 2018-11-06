@@ -18,6 +18,7 @@ import {
 } from '@material-ui/core';
 import { createMap, artifactTypes } from '../util';
 import { queryGroupsAsync, filterGroups } from '../data';
+import { createArtifact } from '../artifact';
 import { asyncIterator } from 'lazy-iters';
 
 function styles(theme) {
@@ -58,6 +59,11 @@ function styles(theme) {
 }
 
 const drawerWidth = 240;
+
+function hasValidCoords(artifact) {
+  const { lat, lng } = artifact.position;
+  return !(lat === null || lat === undefined || lng === null || lng === undefined);
+}
 
 class ArtifactPage extends React.Component {
   state = {
@@ -122,7 +128,10 @@ class ArtifactPage extends React.Component {
     const list = this.filteredTypes(filter);
     const groups = filterGroups(list);
     const query = asyncIterator(queryGroupsAsync(groups));
-    const artifacts = await query.collect();
+    const artifacts = await query
+      .map(createArtifact)
+      .filter(hasValidCoords)
+      .collect();
     this.setState({
       ...this.state,
       filter,
@@ -136,8 +145,6 @@ class ArtifactPage extends React.Component {
   render() {
     const { classes, onArtifactClick } = this.props;
     const { showFilters } = this.state;
-
-    console.log(onArtifactClick);
 
     // The drawer containing the filter options
     const filterDrawer = (

@@ -6,7 +6,7 @@ import withArtifactDialog from './withArtifactDialog';
 import { Typography, Grid } from '@material-ui/core';
 import { object, func } from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { convertArtifact } from '../data';
+import { createArtifact } from '../artifact';
 import { asyncIterator } from 'lazy-iters';
 
 function styles(theme) {
@@ -20,6 +20,10 @@ function styles(theme) {
     },
     card: {
       padding: theme.spacing.unit
+    },
+    scroll: {
+      maxWidth: '100%',
+      maxHeight: '100%'
     }
   };
 }
@@ -45,7 +49,10 @@ class Home extends React.Component {
 
   async loadArtifactSample() {
     const sampleQuery = asyncIterator(querySample());
-    const artifactSample = await sampleQuery.map(convertArtifact).collect();
+    const artifactSample = await sampleQuery
+      .take(3)
+      .map(createArtifact)
+      .collect();
 
     this.setState({
       ...this.state,
@@ -64,7 +71,9 @@ class Home extends React.Component {
         <Typography variant="subheading" align="center">
           A Crowdfunding Solution to Preserving Venetian Heritage
         </Typography>
-        <Separator />
+        {/* <Separator /> */}
+        <img src="https://drive.google.com/open?id=0B_eQW_6yuAAMWE11VTdYVGk0dnc&authuser=0" />
+        <img className={classes.scroll} src="/static/pv_scroll_25px_height.png" />
         <Typography paragraph>
           PreserVenice is a non-profit organization devoted to the preservation and restoration of
           public art in Venice, Italy. Please help us preserve this precious collection of heritage

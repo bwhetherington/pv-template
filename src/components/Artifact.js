@@ -32,11 +32,11 @@ function styles(_) {
  */
 function Artifact(props) {
   const { fullScreen, open, onClose, artifact, classes } = props;
-  const { namePretty } = artifact;
+  const { name, description } = artifact;
   return (
     <Dialog fullScreen={fullScreen} open={open} onClose={onClose}>
       <DialogTitle>
-        {namePretty}
+        {name}
         <span className={classes.close}>
           <IconButton onClick={onClose}>
             <CloseIcon />
@@ -44,14 +44,7 @@ function Artifact(props) {
         </span>
       </DialogTitle>
       <DialogContent>
-        <DialogContentText className={classes.description}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam et sodales arcu. Curabitur
-          eleifend sagittis pretium. Suspendisse scelerisque arcu at arcu interdum, eget posuere
-          justo ornare. Aliquam rhoncus aliquet placerat. Cras id eros lacus. Donec ultricies arcu
-          nulla, quis mollis massa pharetra in. Etiam nec lectus sed ipsum mollis hendrerit sed in
-          turpis. Sed laoreet, elit non mollis sagittis, metus velit gravida magna, ut tincidunt
-          augue eros vitae ex. Quisque feugiat pretium ligula.
-        </DialogContentText>
+        <DialogContentText className={classes.description}>{description}</DialogContentText>
       </DialogContent>
       <DialogActions>
         <Button color="primary">Share</Button>

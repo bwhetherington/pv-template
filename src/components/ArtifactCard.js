@@ -18,6 +18,9 @@ function styles(theme) {
     card: {
       width: '100%'
     },
+    actionArea: {
+      width: '100%'
+    },
     media: {
       objectFit: 'cover',
       width: '100%'
@@ -31,15 +34,23 @@ function styles(theme) {
     description: {
       height: 100,
       overflowY: 'scroll'
+    },
+    title: {
+      maxWidth: '100%',
+      whiteSpace: 'nowrap',
+      overflow: 'hidden',
+      textOverflow: 'ellipsis'
+      // background: 'blue'
     }
   };
 }
 
 function ArtifactCard(props) {
   const { artifact, classes, onClick } = props;
+  console.log(artifact);
   return (
     <Card className={classes.card}>
-      <CardActionArea onClick={onClick}>
+      <CardActionArea onClick={onClick} className={classes.actionArea}>
         <CardMedia
           component="img"
           alt="Artifact"
@@ -49,8 +60,8 @@ function ArtifactCard(props) {
           title={artifact.name}
         />
         <CardContent>
-          <Typography gutterBottom variant="subheading" component="h2">
-            {artifact.namePretty}
+          <Typography gutterBottom variant="subheading" component="h2" className={classes.title}>
+            {artifact.name}
           </Typography>
           <Typography paragraph className={classes.description}>
             {artifact.description}

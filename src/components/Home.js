@@ -71,8 +71,8 @@ class Home extends React.Component {
         <Typography variant="subheading" align="center">
           A Crowdfunding Solution to Preserving Venetian Heritage
         </Typography>
-        {/* <Separator /> */}
-        <img className={classes.scroll} src="/static/pv_scroll_25px_height.png" />
+        <Separator />
+        {/* <img className={classes.scroll} src="/static/pv_scroll_25px_height.png" /> */}
         <Typography paragraph>
           PreserVenice is a non-profit organization devoted to the preservation and restoration of
           public art in Venice, Italy. Please help us preserve this precious collection of heritage

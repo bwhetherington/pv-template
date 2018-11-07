@@ -61,7 +61,7 @@ function createInscription(rawData) {
   return createDefault('Inscription', rawData);
 }
 
-function createOther(artifact) {
+function createOther(rawData) {
   const { content } = rawData;
   const { material, sestiere, approximate_year, subtype } = content;
   const type = isValidDatum(subtype) ? subtype.toLowerCase() : 'artifact';
@@ -96,7 +96,7 @@ function createSymbol(rawData) {
 
 function createFountain(rawData) {
   const { content } = rawData;
-  const { material, sestiere_or_island, approximate_year } = content;
+  const { material, sestiere_or_island, approximate_year, subtype } = content;
   const type = isValidDatum(subtype) ? subtype.toLowerCase() : 'fountain';
   const yearLabel = isValidDatum(approximate_year) ? ` from ${approximate_year}` : '';
   const description = `A ${type} made of ${material}${yearLabel} in ${sestiere_or_island}.`;

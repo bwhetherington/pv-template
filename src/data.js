@@ -1,4 +1,3 @@
-import '@babel/polyfill';
 import { iterator } from 'lazy-iters';
 
 // TODO Uncomment this when the actual database is working
@@ -6,7 +5,7 @@ import { iterator } from 'lazy-iters';
 //   `http://ckdata2.herokuapp.com/api/v1/dataset.json?group_name=${groupName}`;
 
 function queryUrl(groupName) {
-  return `http://localhost:8888/groups/${groupName}`;
+  return `http://pv-sample-server.herokuapp.com/groups/${groupName}`;
 }
 
 // TODO Remove this when the actual database is working

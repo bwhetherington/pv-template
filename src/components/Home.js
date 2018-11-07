@@ -30,7 +30,7 @@ function styles(theme) {
 
 async function* querySample() {
   try {
-    const res = await fetch('http://localhost:8888/sample');
+    const res = await fetch('http://pv-sample-server.herokuapp.com/sample');
     const data = await res.json();
     yield* data;
   } catch (ex) {

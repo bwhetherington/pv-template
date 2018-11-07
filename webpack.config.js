@@ -11,7 +11,7 @@ module.exports = {
         use: ['babel-loader']
       },
       {
-        test: /\.md$/i,
+        test: /\.md$/,
         use: 'raw-loader'
       }
     ]
@@ -33,5 +33,9 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     hot: true
+  },
+  optimization: {
+    // We no not want to minimize our code.
+    minimize: false
   }
 };

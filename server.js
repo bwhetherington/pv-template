@@ -4,6 +4,12 @@ const app = express();
 
 const DIR = 'static';
 
+function valueOrElse(value, other) {
+  return value === null || value === undefined ? other : value;
+}
+
+const port = valueOrElse(process.env.PORT, 8080);
+
 // Serve static files
 app.get(`/${DIR}/*`, (req, res) => {
   const file = path.join(__dirname, req.path).replace(/%20/g, ' ');
@@ -18,10 +24,6 @@ app.get('*', (req, res) => {
 
 // Allow access to build directory
 // app.use(express.static(DIR));
-
-// Determine port to serve from arguments
-// Default to 8080 if package.json is messed up
-const port = process.env.npm_package_config_port | 8080;
 
 // Listen to the specified port
 app.listen(port, () => {

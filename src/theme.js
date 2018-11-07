@@ -18,7 +18,7 @@ export const theme = createMuiTheme({
     headline: {
       fontFamily: '"Roboto Slab", serif'
     }
-  }
+  },
   //   text: {
   //     primary: 'rgba(255, 255, 255, 0.87)',
   //     secondary: 'rgba(255, 255, 255, 0.54)',
@@ -26,16 +26,12 @@ export const theme = createMuiTheme({
   //     hint: 'rgba(255, 255, 255, 0.38)'
   //   }
 
-  //   palette: {
-  //     primary: {
-  //       main: PRIMARY
-  //     },
-  //     secondary: {
-  //       main: SECONDARY
-  //     },
-  //     background: {
-  //       paper: '#ffffff',
-  //       default: '#101010'
-  //     }
-  //   }
+  palette: {
+    primary: {
+      main: PRIMARY
+    },
+    secondary: {
+      main: SECONDARY
+    }
+  }
 });

@@ -10,13 +10,15 @@ function styles(theme) {
       padding: theme.spacing.unit * 2,
       '&:hover': {
         backgroundColor: theme.palette.primary.dark
+        // backgroundColor: 'rgba(255, 255, 255, 0.2)'
       }
     },
     buttonSelected: {
       height: '100%',
       padding: theme.spacing.unit * 2,
+      // backgroundColor: 'rgba(255, 255, 255, 0.2)',
       backgroundColor: theme.palette.primary.dark,
-      boxShadow: 'inset 0px -3px 0px 0px white'
+      boxShadow: `inset 0px -3px 0px 0px white`
     }
   };
 }

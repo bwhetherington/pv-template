@@ -45,7 +45,7 @@ function styles(theme) {
 }
 
 function Page(props) {
-  const { classes, children, selected, fullScreen = false } = props;
+  const { classes, children, selected, fullScreen = false, banner = <div /> } = props;
   if (fullScreen) {
     return (
       <div className={classes.rootFullScreen}>
@@ -57,6 +57,7 @@ function Page(props) {
     return (
       <div className={classes.root}>
         <Navbar selected={selected} position="sticky" />
+        {banner}
         <div className={classes.content}>{children}</div>
         <footer className={classes.footer}>
           <Typography variant="caption" align="right">

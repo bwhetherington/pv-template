@@ -1,5 +1,7 @@
 import { createMuiTheme } from '@material-ui/core/styles';
-
+import blue from '@material-ui/core/colors/blue';
+import red from '@material-ui/core/colors/red';
+import amber from '@material-ui/core/colors/amber';
 /**
  * PRIMARY is Venetian red
  * SECONDARY is Venetian Gold
@@ -27,11 +29,10 @@ export const theme = createMuiTheme({
   //   }
 
   palette: {
-    primary: {
-      main: PRIMARY
-    },
-    secondary: {
-      main: SECONDARY
-    }
+    primary: red,
+    secondary: amber
+    // secondary: {
+    //   main: SECONDARY
+    // }
   }
 });

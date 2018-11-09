@@ -24,6 +24,34 @@ function styles(theme) {
     scroll: {
       maxWidth: '100%',
       maxHeight: '100%'
+    },
+    logoContainer: {
+      width: '100%',
+      textAlign: 'center'
+    },
+    logo: {
+      maxWidth: 500,
+      margin: 'auto'
+    },
+    banner: {
+      margin: 0,
+      background: 'url(/static/banner.jpg)',
+      backgroundSize: 'cover',
+      backgroundPosition: '0px -150px',
+      padding: '120px'
+    },
+    bannerText: {
+      color: 'white',
+      textShadow: '0px 0px 2px rgba(0, 0, 0, 0.75)',
+      textAlign: 'center'
+    },
+    bannerTextTitle: {
+      fontSize: 70,
+      fontFamily: theme.typography.title.fontFamily
+    },
+    bannerTextSubtitle: {
+      fontSize: 20,
+      fontFamily: theme.typography.title.fontFamily
     }
   };
 }
@@ -64,14 +92,19 @@ class Home extends React.Component {
     const { classes, onArtifactClick } = this.props;
     const { artifactSample } = this.state;
     return (
-      <Page selected="home">
-        <Typography variant="headline" align="center">
-          PreserVenice
-        </Typography>
-        <Typography variant="subheading" align="center">
-          A Crowdfunding Solution to Preserving Venetian Heritage
-        </Typography>
-        <Separator />
+      <Page
+        selected="home"
+        banner={
+          <div className={classes.banner}>
+            <span className={classes.bannerText}>
+              <div className={classes.bannerTextTitle}>PreserVenice</div>
+              <div className={classes.bannerTextSubtitle}>
+                A Crowdfunding Solution to Preserving Venetian Heritage
+              </div>
+            </span>
+          </div>
+        }
+      >
         {/* <img className={classes.scroll} src="/static/pv_scroll_25px_height.png" /> */}
         <Typography paragraph>
           PreserVenice is a non-profit organization devoted to the preservation and restoration of

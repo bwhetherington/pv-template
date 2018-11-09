@@ -5,7 +5,7 @@ import { iterator } from 'lazy-iters';
 //   `http://ckdata2.herokuapp.com/api/v1/dataset.json?group_name=${groupName}`;
 
 function queryUrl(groupName) {
-  return `http://pv-sample-server.herokuapp.com/groups/${groupName}`;
+  return `http://data.preservenice.org/groups/${groupName}`;
 }
 
 // TODO Remove this when the actual database is working
@@ -60,6 +60,13 @@ const options = {
 //     }
 //   };
 // };
+
+export async function queryItem(id) {
+  const url = `http://data.preservenice.org/items/${id}`;
+  const res = await fetch(url);
+  const data = await res.json();
+  return data;
+}
 
 export async function* queryGroupsAsync(types = groups) {
   for (const group of types) {

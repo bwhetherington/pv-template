@@ -58,6 +58,7 @@
     "proptypes": "^1.1.0",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
+    "react-google-login": "^3.2.1",
     "react-google-maps": "^9.4.5",
     "react-instafeed": "^0.4.0",
     "react-router-dom": "^4.3.1",

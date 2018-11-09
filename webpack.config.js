@@ -32,7 +32,8 @@ module.exports = {
   ],
   devServer: {
     historyApiFallback: true,
-    hot: true
+    hot: true,
+    disableHostCheck: true
   },
   optimization: {
     // We no not want to minimize our code.

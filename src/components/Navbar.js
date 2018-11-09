@@ -3,17 +3,35 @@ import NavButton from './NavButton';
 
 import { withStyles } from '@material-ui/core/styles';
 import { object, string } from 'prop-types';
-import { AppBar, Toolbar, Typography } from '@material-ui/core';
+import { Button, AppBar, Toolbar, Typography } from '@material-ui/core';
 
 function styles(theme) {
   return {
     appBar: {
       // position: 'relative',
       zIndex: theme.zIndex.drawer + 1
+      // background: '#c33764' /* fallback for old browsers */,
+      // background:
+      //   '-webkit-linear-gradient(to right, #c33764, #1d2671)' /* Chrome 10-25, Safari 5.1-6 */,
+      // background:
+      //   'linear-gradient(to right, #c33764, #1d2671)' /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+      // background: 'linear-gradient(45deg, #C33764 50%, #FF8E53 90%)'
       // flex: '0'
     },
     toolbarTitle: {
-      flex: '1'
+      flex: '1',
+      textAlign: 'left'
+    },
+    controls: {
+      float: 'right'
+    },
+    icon: {
+      height: 28,
+      margin: theme.spacing.unit
+    },
+    login: {
+      marginLeft: theme.spacing.unit,
+      borderColor: 'white'
     }
   };
 }
@@ -65,10 +83,18 @@ function Navbar(props) {
   return (
     <AppBar position={position} className={classes.appBar}>
       <Toolbar variant="dense">
-        <Typography variant="title" color="inherit" noWrap className={classes.toolbarTitle}>
+        {/* <Typography variant="title" color="inherit" noWrap className={classes.toolbarTitle}>
           PreserVenice
-        </Typography>
-        {renderLinks(selected, links)}
+        </Typography> */}
+        <span className={classes.toolbarTitle}>
+          <img src="/static/pv logo white.svg" className={classes.icon} />
+        </span>
+        <span className={classes.controls}>
+          {renderLinks(selected, links)}
+          <Button color="inherit" variant="outlined" className={classes.login}>
+            Login
+          </Button>
+        </span>
       </Toolbar>
     </AppBar>
   );

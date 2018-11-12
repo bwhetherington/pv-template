@@ -67,11 +67,11 @@ const MapWrapper = withGoogleMap(props => (
 
 function renderArtifacts(artifacts, onArtifactClick) {
   return artifacts.map(artifact => {
-    const { name, namePretty, position } = artifact;
+    const { id, name, namePretty, position } = artifact;
     return (
       <Marker
         id={name}
-        key={name}
+        key={id}
         title={namePretty}
         position={position}
         onClick={onArtifactClick(artifact)}

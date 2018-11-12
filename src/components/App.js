@@ -6,6 +6,7 @@ import Contact from './Contact';
 import ArtifactsPage from './ArtifactsPage';
 import Home from './Home';
 import NotFound from './NotFound';
+import Search from './Search';
 
 /**
  * This component wraps an Artifact component, extracting the artifact ID from the routing
@@ -44,6 +45,7 @@ function App(_) {
         <Route exact path="/about" component={About} />
         <Route exact path="/contact" component={Contact} />
         <Route path="/artifacts" component={Artifacts} />
+        <Route path="/search" component={Search} />
         <Route path="*" component={NotFound} />
       </Switch>
     </Router>

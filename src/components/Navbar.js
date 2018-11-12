@@ -55,6 +55,10 @@ const links = {
     name: 'Artifacts',
     handler: onClick('/artifacts')
   },
+  search: {
+    name: 'Search',
+    handler: onClick('/search')
+  },
   about: {
     name: 'About',
     handler: onClick('/about')

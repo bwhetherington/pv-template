@@ -5,16 +5,28 @@ import { object, string } from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 
+const fadeInID = 'fade-in';
+
 function styles(theme) {
   return {
+    [`@keyframes ${fadeInID}`]: {
+      from: {
+        opacity: 0
+      },
+      to: {
+        opacity: 1
+      }
+    },
     rootFullScreen: {
       height: '100%',
       maxWidth: '100%',
-      overflowY: 'hidden'
+      overflowY: 'hidden',
+      animation: `${fadeInID} 1s`
     },
     root: {
       height: '100%',
-      maxWidth: '100%'
+      maxWidth: '100%',
+      animation: `${fadeInID} ease-in 1`
     },
     fullScreen: {
       width: '100%',

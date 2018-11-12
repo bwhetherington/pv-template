@@ -47,7 +47,6 @@ function styles(theme) {
 
 function ArtifactCard(props) {
   const { artifact, classes, onClick } = props;
-  console.log(artifact);
   return (
     <Card className={classes.card}>
       <CardActionArea onClick={onClick} className={classes.actionArea}>

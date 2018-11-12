@@ -10,7 +10,6 @@ function styles(theme) {
       padding: theme.spacing.unit * 2,
       '&:hover': {
         backgroundColor: theme.palette.primary.dark
-        // backgroundColor: 'rgba(255, 255, 255, 0.2)'
       }
     },
     buttonSelected: {

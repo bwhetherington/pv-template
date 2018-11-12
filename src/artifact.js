@@ -1,32 +1,57 @@
-/**
- * Artifact types
- * --------------------
- * Coats of Arms
- * Crosses
- * Decorations
- * Fragments
- * Inscriptions
- * Other
- * Patere
- * Reliefs
- * Sculptures
- * Street Altars
- * Symbols
- * Fountains
- * Flagstaff Pedestals
- * --------------------
- */
+export const types = [
+  'Coat of Arms',
+  'Cross',
+  'Decoration',
+  'Fragment',
+  'Inscription',
+  'Other',
+  'Patera',
+  'Relief',
+  'Sculpture',
+  'Street Altar',
+  'Symbol',
+  'Fountain',
+  'Flagstaff Pedestal'
+];
+
+export const sestieri = [
+  'Cannaregio',
+  'Castello',
+  'Dorsoduro',
+  'San Marco',
+  'San Polo',
+  'Santa Croce',
+  'Giudecca',
+  'Murano',
+  'Burano',
+  'Vignole',
+  'Torcello',
+  'Marzzorbo'
+];
 
 import { groups } from './data';
+
+function isVowel(char) {
+  const c = char.toLowerCase();
+  return c === 'a' || c === 'e' || c === 'i' || c === 'o' || c === 'u';
+}
+
+function article(word) {
+  if (word.length === 0) {
+    return 'A';
+  }
+  return isVowel(word[0]) ? 'An' : 'A';
+}
 
 function createDefault(basicType, rawData) {
   const { content } = rawData;
   const { material, sestiere, approximate_year, subtype } = content;
   const type = isValidDatum(subtype) ? subtype.toLowerCase() : basicType.toLowerCase();
   const yearLabel = isValidDatum(approximate_year) ? ` from ${approximate_year}` : '';
-  const description = `A ${type} made of ${material}${yearLabel} in ${sestiere}.`;
+  const description = `${article(type)} ${type} made of ${material}${yearLabel} in ${sestiere}.`;
   return {
     type: basicType,
+    sestiere,
     description,
     descriptionLong: description
   };
@@ -37,9 +62,12 @@ function createCoatOfArms(rawData) {
   const { sestiere, family, approximate_year, material } = content;
   const familyLabel = isValidDatum(family) ? `${family} family ` : '';
   const yearLabel = isValidDatum(approximate_year) ? ` from ${approximate_year}` : '';
-  const description = `A ${familyLabel}coat of arms${yearLabel} made of ${material} in ${sestiere}.`;
+  const description = `${article(
+    familyLabel
+  )} ${familyLabel}coat of arms${yearLabel} made of ${material} in ${sestiere}.`;
   return {
     type: 'Coat of Arms',
+    sestiere,
     description,
     descriptionLong: description
   };
@@ -66,9 +94,10 @@ function createOther(rawData) {
   const { material, sestiere, approximate_year, subtype } = content;
   const type = isValidDatum(subtype) ? subtype.toLowerCase() : 'artifact';
   const yearLabel = isValidDatum(approximate_year) ? ` from ${approximate_year}` : '';
-  const description = `A ${type} made of ${material}${yearLabel} in ${sestiere}.`;
+  const description = `${article(type)} ${type} made of ${material}${yearLabel} in ${sestiere}.`;
   return {
     type: 'Other',
+    sestiere,
     description,
     descriptionLong: description
   };
@@ -96,12 +125,16 @@ function createSymbol(rawData) {
 
 function createFountain(rawData) {
   const { content } = rawData;
-  const { material, sestiere_or_island, approximate_year, subtype } = content;
-  const type = isValidDatum(subtype) ? subtype.toLowerCase() : 'fountain';
+  const { material, sestiere_or_Island, approximate_year, subtype } = content;
+  // const type = isValidDatum(subtype) ? subtype.toLowerCase() : 'fountain';
+  const type = 'fountain';
   const yearLabel = isValidDatum(approximate_year) ? ` from ${approximate_year}` : '';
-  const description = `A ${type} made of ${material}${yearLabel} in ${sestiere_or_island}.`;
+  const description = `${article(
+    type
+  )} ${type} made of ${material}${yearLabel} in ${sestiere_or_Island}.`;
   return {
     type: 'Fountain',
+    sestiere: sestiere_or_Island,
     description,
     descriptionLong: description
   };
@@ -112,9 +145,12 @@ function createFlagstaffPedestal(rawData) {
   const { sestiere, body_material, approximate_year, subtype } = content;
   const type = isValidDatum(subtype) ? subtype.toLowerCase() : 'flagstaff pedestal';
   const yearLabel = isValidDatum(approximate_year) ? ` from ${approximate_year}` : '';
-  const description = `A ${type} made of ${body_material}${yearLabel} in ${sestiere}.`;
+  const description = `${article(
+    type
+  )} ${type} made of ${body_material}${yearLabel} in ${sestiere}.`;
   return {
     type: 'Flagstaff Pedestal',
+    sestiere,
     description,
     descriptionLong: description
   };
@@ -133,27 +169,34 @@ function isValidDatum(str) {
 const placeholderImage = '/static/default-img.png';
 
 export function createArtifact(rawData) {
-  const { image_url } = rawData.content;
+  const { content } = rawData;
+  let data = rawData;
+  if (typeof content === 'string') {
+    data = { ...rawData, content: JSON.parse(rawData.content) };
+  }
+  const { image_url, height_cm } = data.content;
   const imageUrl = isValidDatum(image_url) ? image_url : placeholderImage;
+  const heightCM = isValidDatum(`${height_cm}`) ? data.content.height_cm : -1;
   const artifact = {
-    rawData,
+    data,
     newData: {
-      id: rawData.ck_id,
-      name: rawData.content.wiki_friendly_title,
+      id: data.ck_id,
+      name: data.content.wiki_friendly_title,
       position: {
-        lat: rawData.lat,
-        lng: rawData.lng
+        lat: data.lat,
+        lng: data.lng
       },
-      type: rawData.content.type,
-      subtype: rawData.content.subtype,
+      type: data.content.type,
+      subtype: data.content.subtype,
       amountNeeded: 0, // Pending any way to actually store this
       amountDonated: 0, // Pending any way to actually store this
       coverImage: imageUrl,
       description: '',
-      descriptionLong: ''
+      descriptionLong: '',
+      heightCM
     }
   };
-  const specific = createSpecificArtifact(artifact.rawData);
+  const specific = createSpecificArtifact(artifact.data);
   return {
     ...artifact.newData,
     ...specific
@@ -195,3 +238,5 @@ function createSpecificArtifact(rawData) {
       return createFlagstaffPedestal(rawData);
   }
 }
+
+function containsKeyword(artifact, keyword) {}

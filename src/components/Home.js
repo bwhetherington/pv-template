@@ -43,7 +43,8 @@ function styles(theme) {
     bannerText: {
       color: 'white',
       textShadow: '0px 0px 2px rgba(0, 0, 0, 0.75)',
-      textAlign: 'center'
+      textAlign: 'center',
+      userSelect: 'none'
     },
     bannerTextTitle: {
       fontSize: 70,
@@ -58,7 +59,7 @@ function styles(theme) {
 
 async function* querySample() {
   try {
-    const res = await fetch('http://pv-sample-server.herokuapp.com/sample');
+    const res = await fetch('http://data.preservenice.org/sample');
     const data = await res.json();
     yield* data;
   } catch (ex) {
@@ -106,11 +107,24 @@ class Home extends React.Component {
         }
       >
         {/* <img className={classes.scroll} src="/static/pv_scroll_25px_height.png" /> */}
+        <Separator />
         <Typography paragraph>
           PreserVenice is a non-profit organization devoted to the preservation and restoration of
           public art in Venice, Italy. Please help us preserve this precious collection of heritage
           by using our website to collect up-to-date information about the artifacts and to donate
           funds for their restoration.
+        </Typography>
+        <Typography>
+          The city of Venice, Italy contains a large and unique collection of artifacts that are
+          displayed on public view, dating as far back as the year 700 AD. The collection includes
+          reliefs, roundels, confraternity insignia, coats of arms, flagpole pedestals,
+          inscriptions, wellheads, street altars, and a variety of other secular and religious
+          symbols of Venice's material culture. These artifacts have been largely neglected by the
+          numerous preservation efforts that have been undertaken since the historic flood of 1966.
+          This vernacular heritage, which records the various stages of the thousand-year evolution
+          of Venice's history from the perspective of the citizens of yesteryear, is being saved by
+          today's citizens through a combination of high technology, social networks, and citizen
+          engagement.
         </Typography>
         <Typography variant="headline" align="center">
           Artifacts in Need

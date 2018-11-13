@@ -1,3 +1,5 @@
+import { iterator } from 'lazy-iters';
+
 export const types = [
   'Coat of Arms',
   'Cross',
@@ -174,12 +176,14 @@ export function createArtifact(rawData) {
   if (typeof content === 'string') {
     data = { ...rawData, content: JSON.parse(rawData.content) };
   }
-  const { image_url, height_cm } = data.content;
+  const { image_url, height_cm, approximate_year } = data.content;
   const imageUrl = isValidDatum(image_url) ? image_url : placeholderImage;
   const heightCM = isValidDatum(`${height_cm}`) ? data.content.height_cm : -1;
+  const year = isValidDatum(approximate_year) ? approximate_year : 'Unknown';
   const artifact = {
     data,
     newData: {
+      year,
       id: data.ck_id,
       name: data.content.wiki_friendly_title,
       position: {
@@ -239,4 +243,8 @@ function createSpecificArtifact(rawData) {
   }
 }
 
-function containsKeyword(artifact, keyword) {}
+export function containsKeyword(artifact, keyword) {
+  const { name, description, descriptionLong } = artifact;
+  const fields = iterator([name, description, descriptionLong]);
+  return fields.map(field => field.toLowerCase()).any(field => field.indexOf(keyword) >= 0);
+}

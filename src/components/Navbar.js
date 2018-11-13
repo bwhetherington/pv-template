@@ -51,13 +51,13 @@ const links = {
     name: 'Home',
     handler: onClick('/home')
   },
+  map: {
+    name: 'Map',
+    handler: onClick('/map')
+  },
   artifacts: {
     name: 'Artifacts',
     handler: onClick('/artifacts')
-  },
-  search: {
-    name: 'Search',
-    handler: onClick('/search')
   },
   about: {
     name: 'About',

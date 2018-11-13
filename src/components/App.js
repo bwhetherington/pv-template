@@ -44,8 +44,8 @@ function App(_) {
         <Route exact path="/home" component={Home} />
         <Route exact path="/about" component={About} />
         <Route exact path="/contact" component={Contact} />
-        <Route path="/artifacts" component={Artifacts} />
-        <Route path="/search" component={Search} />
+        <Route path="/map" component={ArtifactsPage} />
+        <Route path="/artifacts" component={Search} />
         <Route path="*" component={NotFound} />
       </Switch>
     </Router>

@@ -23,7 +23,6 @@ export const groups = [
   'PV DATA Feb 2013 KM Erratic Sculpture Sculptures',
   'PV DATA Feb 2013 KM Erratic Sculpture Street Altars',
   'PV DATA Feb 2013 KM Erratic Sculpture Symbols',
-  // 'PV DATA 2014 KM Newly Documented Fountains',
   'PV FINAL DATA 2014 KM Fountains',
   'PV DATA Apr 2013 KM Flagstaff Pedestals'
 ];
@@ -66,6 +65,16 @@ export async function queryItem(id) {
   const res = await fetch(url);
   const data = await res.json();
   return data;
+}
+
+export async function* queryAll() {
+  try {
+    const res = await fetch('http://data.preservenice.org/all');
+    const data = await res.json();
+    yield* data;
+  } catch (ex) {
+    console.log(ex);
+  }
 }
 
 export async function* queryGroupsAsync(types = groups) {

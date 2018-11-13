@@ -30,11 +30,17 @@ export const theme = createMuiTheme({
   //   }
 
   palette: {
-    primary: red,
-    secondary: amber,
-    error: {
-      main: '#aa2e25'
+    primary: {
+      main: PRIMARY
+    },
+    secondary: {
+      main: SECONDARY
     }
+    // primary: red,
+    // secondary: amber,
+    // error: {
+    //   main: '#aa2e25'
+    // }
     // secondary: {
     //   main: SECONDARY
     // }

@@ -17,9 +17,9 @@ import {
   Checkbox
 } from '@material-ui/core';
 import { createMap, artifactTypes } from '../util';
-import { queryGroupsAsync, filterGroups } from '../data';
+import { queryGroupsAsync, filterGroups, queryAll } from '../data';
 import { createArtifact } from '../artifact';
-import { asyncIterator } from 'lazy-iters';
+import { asyncIterator, iterator } from 'lazy-iters';
 
 function styles(theme) {
   return {
@@ -59,6 +59,10 @@ function styles(theme) {
 }
 
 const drawerWidth = 240;
+
+function id(x) {
+  return x;
+}
 
 function hasValidCoords(artifact) {
   const { lat, lng } = artifact.position;
@@ -125,10 +129,16 @@ class ArtifactPage extends React.Component {
   }
 
   async queryArtifacts(filter) {
-    const list = this.filteredTypes(filter);
-    const groups = filterGroups(list);
-    const query = asyncIterator(queryGroupsAsync(groups));
-    const artifacts = await query
+    let query;
+    if (iterator(Object.values(filter)).all(id)) {
+      query = queryAll();
+    } else {
+      const list = this.filteredTypes(filter);
+      const groups = filterGroups(list);
+      query = queryGroupsAsync(groups);
+    }
+
+    const artifacts = await asyncIterator(query)
       .map(createArtifact)
       .filter(hasValidCoords)
       .collect();
@@ -184,7 +194,7 @@ class ArtifactPage extends React.Component {
     );
 
     return (
-      <Page selected="artifacts" fullScreen={true}>
+      <Page selected="map" fullScreen={true}>
         {filterDrawer}
         <div className={classes.content}>
           <Map onArtifactClick={onArtifactClick} artifacts={this.state.artifacts} />
